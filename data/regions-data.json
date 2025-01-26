@@ -1,0 +1,46 @@
+{
+   "regions": {
+      "souss-massa": {
+         "name": "Souss-Massa",
+         "projects": 20,
+         "stats": {
+            "superficie_libre": {
+               "aquaculture": 1000,
+               "conchyliculture": 2000,
+               "pisciculture": 8000
+            },
+            "nombre_parcelles": {
+               "aquaculture": 100,
+               "conchyliculture": 350,
+               "pisciculture": 456
+            },
+            "projets_autorises": {
+               "aquaculture": 150,
+               "conchyliculture": 200,
+               "pisciculture": 150
+            },
+            "projets_installes": {
+               "aquaculture": 88,
+               "conchyliculture": 96,
+               "pisciculture": 56
+            },
+            "production_estimee": {
+               "aquaculture": 88,
+               "conchyliculture": 96,
+               "pisciculture": 56
+            },
+            "investissement_estime": {
+               "aquaculture": 88,
+               "conchyliculture": 96,
+               "pisciculture": 56
+            },
+            "emploi_estime": {
+               "aquaculture": 88,
+               "conchyliculture": 96,
+               "pisciculture": 56
+            }
+         },
+         "videoUrl": "/placeholder.svg?height=400&width=600"
+      }
+   }
+}
