@@ -8,6 +8,7 @@ import { RegionStats } from "./region-stats"
 import regionsData from "../data/regions-data.json"
 import { type Region } from "@/types/region"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
+import { RegionSidebar } from "./region-sidebar"
 
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -37,12 +38,12 @@ export function MoroccoMap() {
 
       if (!worldData || !moroccoData) return
 
-      const world = topojson.feature(worldData, worldData.objects.countries)
-      const morocco = topojson.feature(moroccoData, moroccoData.objects.regions)
+      const world = topojson.feature(worldData, worldData.objects.countries) as any
+      const morocco = topojson.feature(moroccoData, moroccoData.objects.regions) as any
 
-      const projection = d3.geoMercator().fitSize([width, height], morocco)
+      const projection = d3.geoMercator().fitSize([width, height], morocco) as any
 
-      const pathGenerator = d3.geoPath().projection(projection)
+      const pathGenerator = d3.geoPath().projection(projection) as any
 
       const mapGroup = svg.append("g")
 
@@ -55,11 +56,11 @@ export function MoroccoMap() {
         .enter()
         .append("path")
         .attr("d", pathGenerator)
-        .attr("fill", (d) => {
+        .attr("fill", (d: any) => {
           if (d.properties.continent === "Africa") {
             return "#d4b483"
           }
-          return "#a3a3a3"
+          return "#d4b483"
         })
         .attr("stroke", "white")
         .attr("stroke-width", 0.5)
@@ -125,49 +126,16 @@ export function MoroccoMap() {
     : null
   console.log("ziko", regionData)
   return (
-    <div className="relative w-full max-w-3xl mx-auto">
-      <svg ref={svgRef} className="w-full"></svg>
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetContent className="w-[600px] sm:w-[540px] overflow-y-auto bg-[#1A2421] text-white">
-          <SheetHeader>
-            <SheetTitle className="text-2xl font-bold text-white">{selectedRegion?.properties["name:fr"]}</SheetTitle>
-          </SheetHeader>
-          {regionData && (
-            <div className="mt-6 space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-[#4FD1C5]">{regionData.projects} Projets Aquacole</h2>
-              </div>
-              <div className="relative aspect-video rounded-lg overflow-hidden bg-[#2A3B37]">
-                <img
-                  src={regionData.videoUrl || "/placeholder.svg"}
-                  alt={`Preview of ${selectedRegion?.properties["name:fr"]}`}
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="rounded-full bg-white/90 p-4">
-                    <svg className="h-6 w-6 text-[#4FD1C5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <RegionStats stats={regionData.stats} />
-            </div>
-          )}
-        </SheetContent>
-      </Sheet>
-    </div>
+    <>
+      <main className="flex-1">
+        <div className="mx-auto">
+          <div className="relative w-full mx-auto">
+            <svg ref={svgRef} className="w-full max-h-screen"></svg>
+          </div>
+        </div>
+      </main>
+      <RegionSidebar />
+    </>
   )
 }
 
