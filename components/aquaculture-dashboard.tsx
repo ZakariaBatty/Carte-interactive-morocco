@@ -23,10 +23,10 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
       : aquacultureData.categories.filter((cat) => cat.id === selectedType)
 
   return (
-    <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen rounded-none">
-      <div className="space-y-6">
+    <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen rounded-none overflow-y-auto">
+      <div className="space-y-6 h-full">
         <div>
-          <h2 className="text-2xl mb-4 text-center  font-bold text-[#46bfdd]">{regionName || "MOROCO"}</h2>
+          <h2 className="text-2xl mb-4 p-5 text-center bg-[#1e3f44]  font-bold text-[#46bfdd]">{regionName || "MOROCO"}</h2>
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
@@ -40,7 +40,6 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
             ))}
           </select>
         </div>
-
         {statCategories.map((stat) => (
           <div key={stat.key}>
             <h3 className="text-xl font-bold text-[#46bfdd]  mb-2">{stat.label}</h3>

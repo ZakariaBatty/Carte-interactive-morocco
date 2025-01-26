@@ -6,6 +6,7 @@ import * as topojson from "topojson-client"
 import type { Region } from "@/types/region"
 import { RegionSidebar } from "./region-sidebar"
 import { AquacultureDashboard } from "./aquaculture-dashboard"
+import ProjectStatisticCard from "./shart-map"
 
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -141,8 +142,10 @@ export function MoroccoMap() {
         <div className="mx-auto">
           <div className="relative w-full mx-auto">
             <svg ref={svgRef} className="w-full max-h-screen"></svg>
+            <ProjectStatisticCard />
           </div>
         </div>
+
       </main>
       <div className="h-full">
         <AquacultureDashboard regionName={regionStats} />
