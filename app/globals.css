@@ -36,11 +36,8 @@
    }
 }
 
-/* @layer base {
-   * {
-      @apply border-border;
-   }
+@layer base {
    body {
-      @apply bg-background text-foreground;
+      @apply bg-[#0c4a6e];
    }
-} */
+}

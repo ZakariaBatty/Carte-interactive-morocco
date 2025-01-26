@@ -1,14 +1,11 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { useEffect, useRef, useState } from "react"
 import * as d3 from "d3"
 import * as topojson from "topojson-client"
-import { RegionStats } from "./region-stats"
-import regionsData from "../data/regions-data.json"
-import { type Region } from "@/types/region"
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
+import type { Region } from "@/types/region"
 import { RegionSidebar } from "./region-sidebar"
+import { AquacultureDashboard } from "./aquaculture-dashboard"
 
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -42,7 +39,6 @@ export function MoroccoMap() {
       const morocco = topojson.feature(moroccoData, moroccoData.objects.regions) as any
 
       const projection = d3.geoMercator().fitSize([width, height], morocco) as any
-
       const pathGenerator = d3.geoPath().projection(projection) as any
 
       const mapGroup = svg.append("g")
@@ -56,12 +52,7 @@ export function MoroccoMap() {
         .enter()
         .append("path")
         .attr("d", pathGenerator)
-        .attr("fill", (d: any) => {
-          if (d.properties.continent === "Africa") {
-            return "#d4b483"
-          }
-          return "#d4b483"
-        })
+        .attr("fill", "#d4b483")
         .attr("stroke", "white")
         .attr("stroke-width", 0.5)
 
@@ -84,57 +75,78 @@ export function MoroccoMap() {
           d3.select(this).attr("fill", "#d4b483")
         })
         .on("click", (event, d) => {
-          setSelectedRegion(d as Region)
+          const region = d as any
+          setSelectedRegion(region)
           setIsOpen(true)
 
-          if ((d as Region).properties.id === "souss-massa") {
-            const center = pathGenerator.centroid(d)
-            const radius = 100
+          // Add this line to show an alert with the region name
+          // alert(`Clicked region: ${region.properties.name}`)
 
-            svg.selectAll(".radial-viz").remove()
+          const center = pathGenerator.centroid(d)
+          const radius = 100
 
-            const radialGroup = svg
-              .append("g")
-              .attr("class", "radial-viz")
-              .attr("transform", `translate(${center[0]}, ${center[1]})`)
+          svg.selectAll(".radial-viz").remove()
 
-            const zones = [
-              { radius: radius * 0.4, color: "#38bdf8" },
-              { radius: radius * 0.6, color: "#7dd3fc" },
-              { radius: radius * 0.8, color: "#bae6fd" },
-              { radius: radius, color: "#e0f2fe" },
-            ]
+          const radialGroup = svg
+            .append("g")
+            .attr("class", "radial-viz")
+            .attr("transform", `translate(${center[0]}, ${center[1]})`)
 
-            zones.forEach((zone, i) => {
-              radialGroup
-                .append("circle")
-                .attr("r", zone.radius)
-                .attr("fill", "none")
-                .attr("stroke", zone.color)
-                .attr("stroke-width", 2)
-                .attr("opacity", 0.7)
-            })
-          }
+          const zones = [
+            { radius: radius * 0.4, color: "#38bdf8" },
+            { radius: radius * 0.6, color: "#7dd3fc" },
+            { radius: radius * 0.8, color: "#bae6fd" },
+            { radius: radius, color: "#e0f2fe" },
+          ]
+
+          zones.forEach((zone) => {
+            radialGroup
+              .append("circle")
+              .attr("r", zone.radius)
+              .attr("fill", "none")
+              .attr("stroke", zone.color)
+              .attr("stroke-width", 2)
+              .attr("opacity", 0.7)
+          })
+
+          // Add text labels
+          radialGroup
+            .append("text")
+            .attr("y", -10)
+            .attr("text-anchor", "middle")
+            .attr("fill", "white")
+            .text("20")
+            .style("font-size", "24px")
+            .style("font-weight", "bold")
+
+          radialGroup
+            .append("text")
+            .attr("y", 15)
+            .attr("text-anchor", "middle")
+            .attr("fill", "white")
+            .text("Projets Aquacole")
+            .style("font-size", "14px")
         })
     }
 
     loadMap()
   }, [])
 
-  const regionData = selectedRegion
-    ? regionsData.regions[selectedRegion.properties.id as keyof typeof regionsData.regions]
-    : null
-  console.log("ziko", regionData)
+  const regionStats = selectedRegion ? selectedRegion.properties['name:en'] : null
+
+  console.log("regionStats", regionStats)
   return (
     <>
-      <main className="flex-1">
+      <main className="flex-1 h-full overflow-hidden">
         <div className="mx-auto">
           <div className="relative w-full mx-auto">
             <svg ref={svgRef} className="w-full max-h-screen"></svg>
           </div>
         </div>
       </main>
-      <RegionSidebar />
+      <div className="h-full">
+        <AquacultureDashboard regionName={regionStats} />
+      </div>
     </>
   )
 }

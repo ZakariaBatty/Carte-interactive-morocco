@@ -38,12 +38,13 @@ function StatCard({ title, data, unit = "" }: StatCardProps) {
   )
 }
 
-export function RegionSidebar() {
+export function RegionSidebar({ regionName }: { regionName: string | null }) {
+
   return (
     <div className="w-[320px] bg-[#1A2421] text-white p-6 h-screen overflow-y-auto">
       <div className="space-y-6">
         <div>
-          <h2 className="text-2xl font-bold mb-6">Maroc</h2>
+          <h2 className="text-2xl font-bold mb-6">{regionName}</h2>
           <div className="space-y-4">
             <div>
               <label className="text-sm text-[#4FD1C5]">Type délevage</label>

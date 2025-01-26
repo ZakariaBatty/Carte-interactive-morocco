@@ -3,7 +3,7 @@ import { RegionSidebar } from "@/components/region-sidebar"
 
 export default function Home() {
   return (
-    <div className="flex">
+    <div className="flex max-h-screen">
       <MoroccoMap />
     </div>
   )
