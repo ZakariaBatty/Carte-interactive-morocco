@@ -12,7 +12,7 @@ export default function Page() {
 
   const handleCircleClick = () => {
     setHideContent(true)
-    setTimeout(() => setShowMap(true), 3000)
+    setTimeout(() => setShowMap(true), 2000)
   }
 
   return (

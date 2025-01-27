@@ -157,9 +157,7 @@ export function MoroccoMap() {
         </div>
 
       </main>
-      <div className="h-full">
-        <AquacultureDashboard regionName={regionStats} />
-      </div> */}
+      */}
 
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -175,6 +173,16 @@ export function MoroccoMap() {
           transition={{ duration: 1, delay: 2.5 }}
         >
           <svg ref={svgRef} className="w-full max-h-screen"></svg>
+        </motion.div>
+      </div>
+      <div className="h-full">
+        <motion.div
+          className="absolute inset-0"
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          transition={{ duration: 1, delay: 2.8 }}
+        >
+          <AquacultureDashboard regionName={regionStats} />
         </motion.div>
       </div>
     </>
