@@ -115,7 +115,7 @@ export function MoroccoMap() {
             .append("text")
             .attr("y", -10)
             .attr("text-anchor", "middle")
-            .attr("fill", "white")
+            .attr("fill", "black")
             .text("20")
             .style("font-size", "24px")
             .style("font-weight", "bold")
@@ -124,9 +124,19 @@ export function MoroccoMap() {
             .append("text")
             .attr("y", 15)
             .attr("text-anchor", "middle")
-            .attr("fill", "white")
+            .attr("fill", "black")
             .text("Projets Aquacole")
             .style("font-size", "14px")
+            .style("font-weight", "bold")
+
+          radialGroup
+            .append("text")
+            .attr("y", 35)
+            .attr("text-anchor", "middle")
+            .attr("fill", "black")
+            .text(`${region.properties['name:en']}`)
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
         })
     }
 
@@ -142,7 +152,6 @@ export function MoroccoMap() {
         <div className="mx-auto">
           <div className="relative w-full mx-auto">
             <svg ref={svgRef} className="w-full max-h-screen"></svg>
-            <ProjectStatisticCard />
           </div>
         </div>
 
