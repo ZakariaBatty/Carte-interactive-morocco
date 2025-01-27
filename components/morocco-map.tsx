@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react"
 import * as d3 from "d3"
 import * as topojson from "topojson-client"
 import type { Region } from "@/types/region"
-import { RegionSidebar } from "./region-sidebar"
 import { AquacultureDashboard } from "./aquaculture-dashboard"
 import ProjectStatisticCard from "./shart-map"
 import { motion } from "framer-motion"
+import moroccoMap from "../data/morocco-regions.json"
 
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -28,11 +28,12 @@ export function MoroccoMap() {
       .attr("style", "max-width: 100%; height: auto;")
 
     svg.selectAll("*").remove()
+    //  // (EH-partial)
 
     const loadMap = async () => {
       const [worldData, moroccoData] = await Promise.all([
         d3.json<any>("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"),
-        d3.json<any>("https://cdn.jsdelivr.net/npm/morocco-map/data/regions.json"),
+        Promise.resolve(moroccoMap) as any,
       ])
 
       if (!worldData || !moroccoData) return
