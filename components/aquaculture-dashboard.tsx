@@ -23,7 +23,7 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
       : aquacultureData.categories.filter((cat) => cat.id === selectedType)
 
   return (
-    <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen rounded-none overflow-y-auto">
+    <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen rounded-none overflow-y-auto w-1/4">
       <div className="space-y-6 h-full">
         <div>
           <h2 className="text-2xl mb-4 p-5 text-center bg-[#1e3f44]  font-bold text-[#46bfdd]">{regionName || "MOROCO"}</h2>
