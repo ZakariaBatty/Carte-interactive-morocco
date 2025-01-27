@@ -7,6 +7,7 @@ import type { Region } from "@/types/region"
 import { RegionSidebar } from "./region-sidebar"
 import { AquacultureDashboard } from "./aquaculture-dashboard"
 import ProjectStatisticCard from "./shart-map"
+import { motion } from "framer-motion"
 
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
@@ -148,7 +149,7 @@ export function MoroccoMap() {
   console.log("regionStats", regionStats)
   return (
     <>
-      <main className="flex-1 h-full overflow-hidden">
+      {/* <main className="flex-1 h-full overflow-hidden">
         <div className="mx-auto">
           <div className="relative w-full mx-auto">
             <svg ref={svgRef} className="w-full max-h-screen"></svg>
@@ -158,6 +159,23 @@ export function MoroccoMap() {
       </main>
       <div className="h-full">
         <AquacultureDashboard regionName={regionStats} />
+      </div> */}
+
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-[#0c4a6e]"
+          initial={{ x: "-100%" }}
+          animate={{ x: 0 }}
+          transition={{ duration: 1, delay: 2.5 }}
+        />
+        <motion.div
+          className="absolute inset-0"
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          transition={{ duration: 1, delay: 2.5 }}
+        >
+          <svg ref={svgRef} className="w-full max-h-screen"></svg>
+        </motion.div>
       </div>
     </>
   )
