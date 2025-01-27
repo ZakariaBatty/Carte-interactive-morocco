@@ -21,7 +21,7 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
     selectedType === "all"
       ? aquacultureData.categories
       : aquacultureData.categories.filter((cat) => cat.id === selectedType)
-  console.log("filteredCategories", filteredCategories.length)
+
   return (
     <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen rounded-none overflow-y-auto">
       <div className="space-y-6 h-full">

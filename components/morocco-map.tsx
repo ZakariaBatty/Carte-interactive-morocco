@@ -3,16 +3,36 @@
 import { useEffect, useRef, useState } from "react"
 import * as d3 from "d3"
 import * as topojson from "topojson-client"
+import { GeometryCollection, GeometryObject } from "topojson-specification"
 import type { Region } from "@/types/region"
 import { AquacultureDashboard } from "./aquaculture-dashboard"
-import ProjectStatisticCard from "./shart-map"
 import { motion } from "framer-motion"
 import moroccoMap from "../data/morocco-regions.json"
+import worldMap from "../data/wolrd-regions.json"
+
+import { Topology } from "@/types/morocco"
+
+export type TopologyWolrd = {
+  type: 'Topology';
+  objects: {
+    countries: GeometryCollection;
+    land: GeometryCollection;
+  };
+  arcs: number[][][];
+};
+
+export type Geometry = GeometryObject & {
+  type: 'Polygon' | 'MultiPolygon';
+  arcs: number[][][];
+  id?: string;
+  properties?: {
+    name: string;
+  };
+};
 
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
   const [selectedRegion, setSelectedRegion] = useState<Region | null>(null)
-  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     if (!svgRef.current) return
@@ -32,21 +52,21 @@ export function MoroccoMap() {
 
     const loadMap = async () => {
       const [worldData, moroccoData] = await Promise.all([
-        d3.json<any>("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"),
-        Promise.resolve(moroccoMap) as any,
-      ])
+        Promise.resolve(worldMap),
+        Promise.resolve(moroccoMap) as Promise<Topology>,
+      ]);
 
-      if (!worldData || !moroccoData) return
+      if (!worldData || !moroccoData) return;
 
-      const world = topojson.feature(worldData, worldData.objects.countries) as any
-      const morocco = topojson.feature(moroccoData, moroccoData.objects.regions) as any
+      const world = topojson.feature(worldData as unknown as TopologyWolrd, worldData.objects.countries as GeometryCollection);
+      const morocco = topojson.feature(moroccoData as Topology, moroccoData.objects.regions);
 
-      const projection = d3.geoMercator().fitSize([width, height], morocco) as any
-      const pathGenerator = d3.geoPath().projection(projection) as any
+      const projection = d3.geoMercator().fitSize([width, height], morocco);
+      const pathGenerator = d3.geoPath().projection(projection);
 
-      const mapGroup = svg.append("g")
+      const mapGroup = svg.append("g");
 
-      mapGroup.append("rect").attr("width", width).attr("height", height).attr("fill", "#0c4a6e")
+      mapGroup.append("rect").attr("width", width).attr("height", height).attr("fill", "#0c4a6e");
 
       mapGroup
         .append("g")
@@ -57,7 +77,7 @@ export function MoroccoMap() {
         .attr("d", pathGenerator)
         .attr("fill", "#d4b483")
         .attr("stroke", "white")
-        .attr("stroke-width", 0.5)
+        .attr("stroke-width", 0.5);
 
       mapGroup
         .append("g")
@@ -72,35 +92,32 @@ export function MoroccoMap() {
         .attr("class", "region transition-colors duration-200")
         .style("cursor", "pointer")
         .on("mouseover", function () {
-          d3.select(this).attr("fill", "#c19d6f")
+          d3.select(this).attr("fill", "#c19d6f");
         })
         .on("mouseout", function () {
-          d3.select(this).attr("fill", "#d4b483")
+          d3.select(this).attr("fill", "#d4b483");
         })
         .on("click", (event, d) => {
-          const region = d as any
-          setSelectedRegion(region)
-          setIsOpen(true)
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const region = d as any;
+          setSelectedRegion(region);
 
-          // Add this line to show an alert with the region name
-          // alert(`Clicked region: ${region.properties.name}`)
+          const center = pathGenerator.centroid(d);
+          const radius = 100;
 
-          const center = pathGenerator.centroid(d)
-          const radius = 100
-
-          svg.selectAll(".radial-viz").remove()
+          svg.selectAll(".radial-viz").remove();
 
           const radialGroup = svg
             .append("g")
             .attr("class", "radial-viz")
-            .attr("transform", `translate(${center[0]}, ${center[1]})`)
+            .attr("transform", `translate(${center[0]}, ${center[1]})`);
 
           const zones = [
             { radius: radius * 0.4, color: "#38bdf8" },
             { radius: radius * 0.6, color: "#7dd3fc" },
             { radius: radius * 0.8, color: "#bae6fd" },
             { radius: radius, color: "#e0f2fe" },
-          ]
+          ];
 
           zones.forEach((zone) => {
             radialGroup
@@ -109,10 +126,9 @@ export function MoroccoMap() {
               .attr("fill", "none")
               .attr("stroke", zone.color)
               .attr("stroke-width", 2)
-              .attr("opacity", 0.7)
-          })
+              .attr("opacity", 0.7);
+          });
 
-          // Add text labels
           radialGroup
             .append("text")
             .attr("y", -10)
@@ -120,7 +136,7 @@ export function MoroccoMap() {
             .attr("fill", "black")
             .text("20")
             .style("font-size", "24px")
-            .style("font-weight", "bold")
+            .style("font-weight", "bold");
 
           radialGroup
             .append("text")
@@ -129,7 +145,7 @@ export function MoroccoMap() {
             .attr("fill", "black")
             .text("Projets Aquacole")
             .style("font-size", "14px")
-            .style("font-weight", "bold")
+            .style("font-weight", "bold");
 
           radialGroup
             .append("text")
@@ -138,9 +154,9 @@ export function MoroccoMap() {
             .attr("fill", "black")
             .text(`${region.properties['name:en']}`)
             .style("font-size", "14px")
-            .style("font-weight", "bold")
-        })
-    }
+            .style("font-weight", "bold");
+        });
+    };
 
     loadMap()
   }, [])
