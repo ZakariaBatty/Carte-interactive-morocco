@@ -21,7 +21,7 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
     selectedType === "all"
       ? aquacultureData.categories
       : aquacultureData.categories.filter((cat) => cat.id === selectedType)
-
+  console.log("filteredCategories", filteredCategories.length)
   return (
     <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen rounded-none overflow-y-auto">
       <div className="space-y-6 h-full">
@@ -43,9 +43,9 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
         {statCategories.map((stat) => (
           <div key={stat.key}>
             <h3 className="text-xl font-bold text-[#46bfdd]  mb-2">{stat.label}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className={`grid grid-cols-1 gap-4 ${filteredCategories.length > 1 ? "grid-cols-3" : ""}`}>
               {filteredCategories.map((category) => (
-                <div key={category.id} className="flex flex-col justify-between items-center border-b border-[#4fd1c5]/20 pb-2">
+                <div key={category.id} className={`flex flex-col justify-between ${filteredCategories.length > 1 ? " items-center" : " items-left"} border-b border-[#4fd1c5]/20 pb-2`}>
                   <span className="text-sm text-gray-300">{category.name}</span>
                   <span className="text-2xl text-white font-bold ">
                     {aquacultureData.stats[category.id as keyof typeof aquacultureData.stats][stat.key as keyof typeof aquacultureData.stats.algoculture]}

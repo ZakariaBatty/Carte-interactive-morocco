@@ -168,7 +168,7 @@ export function MoroccoMap() {
           transition={{ duration: 1, delay: 2.5 }}
         />
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 w-full"
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           transition={{ duration: 1, delay: 2.5 }}
