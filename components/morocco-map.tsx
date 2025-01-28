@@ -11,6 +11,7 @@ import moroccoMap from "../data/morocco-regions.json"
 import worldMap from "../data/wolrd-regions.json"
 
 import { Topology } from "@/types/morocco"
+import ProjectStatisticCard from "./shart-map"
 
 export type TopologyWolrd = {
   type: 'Topology';
@@ -76,7 +77,7 @@ export function MoroccoMap() {
         .append("path")
         .attr("d", pathGenerator)
         .attr("fill", "#d4b483")
-        .attr("stroke", "white")
+        .attr("stroke", "#d4b483")
         .attr("stroke-width", 0.5);
 
       mapGroup
@@ -129,32 +130,25 @@ export function MoroccoMap() {
               .attr("opacity", 0.7);
           });
 
+          // Assuming radialGroup is already defined
           radialGroup
-            .append("text")
-            .attr("y", -10)
-            .attr("text-anchor", "middle")
-            .attr("fill", "black")
-            .text("20")
-            .style("font-size", "24px")
-            .style("font-weight", "bold");
+            .append("foreignObject")
+            .attr("x", -380)
+            .attr("y", -190)
+            .attr("width", 300)
+            .attr("height", 80)
+            .html(`
+            <div style="text-align: center; color: white;">
+              <p style="font-size: 16px; font-weight: bold; background: black; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                20 <span style="font-weight: normal;">Projets Aquacole</span>
+              </p>
+              <div style="background: #3BAFDA; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 6px;">
+                Souss-Massa
+              </div>
+            </div>
+          `);
 
-          radialGroup
-            .append("text")
-            .attr("y", 15)
-            .attr("text-anchor", "middle")
-            .attr("fill", "black")
-            .text("Projets Aquacole")
-            .style("font-size", "14px")
-            .style("font-weight", "bold");
 
-          radialGroup
-            .append("text")
-            .attr("y", 35)
-            .attr("text-anchor", "middle")
-            .attr("fill", "black")
-            .text(`${region.properties['name:en']}`)
-            .style("font-size", "14px")
-            .style("font-weight", "bold");
         });
     };
 
@@ -195,6 +189,7 @@ export function MoroccoMap() {
           </div>
         </motion.div>
       </div>
+      <ProjectStatisticCard />
     </>
   )
 }
