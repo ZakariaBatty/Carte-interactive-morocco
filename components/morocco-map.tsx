@@ -106,7 +106,6 @@ export function MoroccoMap() {
           setOpen(true)
           const center = pathGenerator.centroid(d);
           const radius = 100;
-
           svg.selectAll(".radial-viz").remove();
 
           const radialGroup = svg
@@ -134,8 +133,8 @@ export function MoroccoMap() {
           // Assuming radialGroup is already defined
           radialGroup
             .append("foreignObject")
-            .attr("x", `${region.id === "MA_05" ? -400 : region.id === "MA_01" ? -500 : region.id === "MA_02" ? -110 : -380}`)
-            .attr("y", `${region.id === "MA_01" ? 60 : region.id === "MA_05" ? -100 : region.id === "MA_02" ? 112 : -190}`)
+            .attr("x", `${region.id === "MA_05" ? -400 : region.id === "MA_01" ? -420 : region.id === "MA_02" ? -110 : region.id === "MA_07" ? -500 : -380}`)
+            .attr("y", `${region.id === "MA_01" ? 10 : region.id === "MA_05" ? -100 : region.id === "MA_02" ? 112 : region.id === "MA_07" ? 30 : -130}`)
             .attr("width", 300)
             .attr("height", 80)
             .html(`
