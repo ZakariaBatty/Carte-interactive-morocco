@@ -34,6 +34,7 @@ export type Geometry = GeometryObject & {
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
   const [selectedRegion, setSelectedRegion] = useState<Region | null>(null)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
     if (!svgRef.current) return
@@ -102,7 +103,7 @@ export function MoroccoMap() {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const region = d as any;
           setSelectedRegion(region);
-
+          setOpen(true)
           const center = pathGenerator.centroid(d);
           const radius = 100;
 
@@ -160,16 +161,6 @@ export function MoroccoMap() {
 
   return (
     <>
-      {/* <main className="flex-1 h-full overflow-hidden">
-        <div className="mx-auto">
-          <div className="relative w-full mx-auto">
-            <svg ref={svgRef} className="w-full max-h-screen"></svg>
-          </div>
-        </div>
-
-      </main>
-      */}
-
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           className="absolute inset-0 bg-[#0c4a6e]"
@@ -189,7 +180,7 @@ export function MoroccoMap() {
           </div>
         </motion.div>
       </div>
-      <ProjectStatisticCard />
+      {open && <ProjectStatisticCard />}
     </>
   )
 }
