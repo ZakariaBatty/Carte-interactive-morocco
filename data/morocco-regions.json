@@ -11,7 +11,7 @@
          "geometries": [
             {
                "type": "MultiPolygon",
-               "id": "MA-01",
+               "id": "MA_01",
                "properties": {
                   "name:en": "Tanger-Tétouan-Al Hoceïma",
                   "name:ar": "طنجة تطوان الحسيمة",
@@ -21,7 +21,7 @@
             },
             {
                "type": "MultiPolygon",
-               "id": "MA-02",
+               "id": "MA_02",
                "properties": {
                   "name:en": "L'Oriental",
                   "name:ar": "الشرقية",
@@ -31,7 +31,7 @@
             },
             {
                "type": "MultiPolygon",
-               "id": "MA-03",
+               "id": "MA_03",
                "properties": {
                   "name:en": "Souss-Massa",
                   "name:ar": "سوس-ماسة",
@@ -41,7 +41,7 @@
             },
             {
                "type": "Polygon",
-               "id": "MA-04",
+               "id": "MA_04",
                "properties": {
                   "name:en": "Guelmim-Oued Noun",
                   "name:ar": "كلميم وادي نون",
@@ -51,7 +51,7 @@
             },
             {
                "type": "MultiPolygon",
-               "id": "MA-05",
+               "id": "MA_05",
                "properties": {
                   "name:en": "Casablanca-Settat",
                   "name:ar": "الدار البيضاء-سطات",
@@ -61,7 +61,7 @@
             },
             {
                "type": "MultiPolygon",
-               "id": "MA-06",
+               "id": "MA_06",
                "properties": {
                   "name:en": "Marrakech-Safi",
                   "name:ar": "مراكش-أسفي",
@@ -71,7 +71,7 @@
             },
             {
                "type": "Polygon",
-               "id": "MA-07",
+               "id": "MA_07",
                "properties": {
                   "name:en": "Laâyoune-Sakia El Hamra",
                   "name:ar": "العيون الساقية الحمراء",
@@ -81,7 +81,7 @@
             },
             {
                "type": "Polygon",
-               "id": "MA-08",
+               "id": "MA_08",
                "properties": {
                   "name:en": "Dakhla-Oued Ed-Dahab",
                   "name:ar": "الداخلة-وادي الذهب",

@@ -133,8 +133,8 @@ export function MoroccoMap() {
           // Assuming radialGroup is already defined
           radialGroup
             .append("foreignObject")
-            .attr("x", -380)
-            .attr("y", -190)
+            .attr("x", `${region.id === "MA_05" ? -400 : region.id === "MA_01" ? -500 : region.id === "MA_02" ? -110 : -380}`)
+            .attr("y", `${region.id === "MA_01" ? 60 : region.id === "MA_05" ? -100 : region.id === "MA_02" ? 112 : -190}`)
             .attr("width", 300)
             .attr("height", 80)
             .html(`
@@ -143,7 +143,7 @@ export function MoroccoMap() {
                 20 <span style="font-weight: normal;">Projets Aquacole</span>
               </p>
               <div style="background: #3BAFDA; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 6px;">
-                Souss-Massa
+                ${region.properties['name']}
               </div>
             </div>
           `);
@@ -156,8 +156,8 @@ export function MoroccoMap() {
   }, [])
 
   const regionStats = selectedRegion ? selectedRegion.properties['name:en'] : null
+  const idStats = selectedRegion ? selectedRegion.id : "MA_00"
 
-  console.log("regionStats", regionStats)
   return (
     <>
       {/* <main className="flex-1 h-full overflow-hidden">
@@ -185,7 +185,7 @@ export function MoroccoMap() {
         >
           <svg ref={svgRef} className="w-full max-h-screen"></svg>
           <div className="h-full">
-            <AquacultureDashboard regionName={regionStats} />
+            <AquacultureDashboard regionName={regionStats} stats={idStats} />
           </div>
         </motion.div>
       </div>
