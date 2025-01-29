@@ -15,6 +15,12 @@ export default function Page() {
     setTimeout(() => setShowMap(true), 2000)
   }
 
+
+  const handleResetClick = () => {
+    setShowMap(false);
+    setHideContent(false);
+  };
+
   return (
     <div className="relative min-h-screen w-full bg-[#0A3B44] overflow-hidden">
       {/* World Map Background */}
@@ -104,6 +110,16 @@ export default function Page() {
 
       {/* Morocco Map */}
       <AnimatePresence>{showMap && <MoroccoMap />}</AnimatePresence>
+
+      {/* Reset Button (Only visible when the map is shown) */}
+      {showMap && (
+        <button
+          onClick={handleResetClick}
+          className="absolute bottom-10 left-[10%] transform -translate-x-1/2 bg-[#E5B975] text-[#0A3B44] px-6 py-2 rounded-full shadow-md"
+        >
+          Reset Experience
+        </button>
+      )}
     </div>
   )
 }

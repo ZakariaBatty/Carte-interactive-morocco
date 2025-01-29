@@ -21,14 +21,16 @@ interface ProjectStatisticCardProps {
 }
 
 const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
+
+
   const [isOpen, setIsOpen] = useState(false);
 
   const stats = dataSet[vd] || { nombreParcels: 0, superficie: 0, projets: 0 };
 
   return (
     <>
-      <div className="absolute bottom-10 left-[50%] shadow-xl rounded-lg overflow-hidden">
-        <div className="relative w-80 h-48">
+      <div className="absolute bottom-10 left-[60%] shadow-xl rounded-lg overflow-hidden">
+        <div className="relative w-96 h-56">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
               <Play size={48} className="text-white opacity-80 cursor-pointer" />
@@ -140,6 +142,10 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
           </div>
         </div>
       </div>
+      {/* Animated Circles */}
+      <div className="absolute  bottom-2 left-2 ">
+
+      </div >
     </>
   );
 };
