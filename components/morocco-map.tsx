@@ -79,8 +79,14 @@ export function MoroccoMap() {
         .attr("d", pathGenerator)
         .attr("fill", "#d4b483")
         .attr("stroke", "#d4b483")
-        .attr("stroke-width", 0.5);
-
+        .attr("stroke-width", 0.5)
+        .on("click", (event, d) => {
+          console.log(d);
+          setSelectedRegion({ id: "MA_00", properties: { "name:en": "Morocco", "name:ar": "المغرب", "name:fr": "Maroc", id: "MA_00" } });
+          setOpen(false)
+          // Remove circles (radial visualization)
+          svg.selectAll(".radial-viz").remove();
+        });
       mapGroup
         .append("g")
         .selectAll("path")
@@ -179,7 +185,7 @@ export function MoroccoMap() {
           </div>
         </motion.div>
       </div>
-      {open && <ProjectStatisticCard />}
+      {open && <ProjectStatisticCard vd={idStats} />}
     </>
   )
 }
