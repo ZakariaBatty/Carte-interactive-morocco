@@ -29,7 +29,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
   return (
     <>
-      <div className="absolute bottom-10 left-[60%] shadow-xl rounded-lg overflow-hidden">
+      <div className="absolute bottom-10 left-[55%] shadow-xl rounded-lg overflow-hidden">
         <div className="relative w-96 h-56">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
