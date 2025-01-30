@@ -55,8 +55,8 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
         </div>
       </div>
 
-      <div className="absolute top-4 left-4 shadow-xl rounded-lg overflow-hidden">
-        <div className="w-full max-w-2xl mx-auto bg-white space-y-8 p-4">
+      <div className="absolute top-4 left-4 rounded-lg overflow-hidden">
+        <div className="w-full max-w-2xl mx-auto text-white space-y-8 p-4">
           {/* First Chart */}
           <Card className="w-full">
             <CardHeader>
@@ -69,8 +69,8 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                   <span className="text-sm text-muted-foreground">Nombre de parcels</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-teal-900 h-full" style={{ width: `${stats.nombreParcels}%` }} >{stats.nombreParcels}</div>
-                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.nombreParcels}%` }} >{100 - stats.nombreParcels}</div>
+                  <div className="bg-[#46bfdd] h-full" style={{ width: `${stats.nombreParcels}%` }} >{stats.nombreParcels}</div>
+                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${100 - stats.nombreParcels}%` }} >{100 - stats.nombreParcels}</div>
                 </div>
               </div>
 
@@ -80,8 +80,8 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                   <span className="text-sm text-muted-foreground">Superficie</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-teal-900 h-full" style={{ width: `${stats.superficie}%` }} >{stats.superficie}</div>
-                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.superficie}%` }} >{100 - stats.superficie}</div>
+                  <div className="bg-[#46bfdd] h-full" style={{ width: `${stats.superficie}%` }} >{stats.superficie}</div>
+                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${100 - stats.superficie}%` }} >{100 - stats.superficie}</div>
                 </div>
               </div>
 
@@ -90,8 +90,8 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                   <span className="text-sm text-muted-foreground">Projets</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-teal-900 h-full" style={{ width: `${stats.projets}%` }} >{stats.projets}</div>
-                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.projets}%` }} >{100 - stats.projets}</div>
+                  <div className="bg-[#ff9500] h-full" style={{ width: `${stats.projets}%` }} >{stats.projets}</div>
+                  <div className="bg-[#b7886a] h-full" style={{ width: `${100 - stats.projets}%` }} >{100 - stats.projets}</div>
                 </div>
               </div>
 
@@ -101,16 +101,20 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
           {/* Legend */}
           <div className="flex justify-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-teal-900 rounded" />
-              <span className="text-sm text-muted-foreground">Litre</span>
+              <div className="w-3 h-3 bg-[#ff9500] rounded" />
+              <span className="text-sm text-muted-foreground">Libre</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-cyan-400 rounded" />
+              <div className="w-3 h-3 bg-[#b7886a] rounded" />
               <span className="text-sm text-muted-foreground">Potentiel</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-cyan-400 rounded" />
-              <span className="text-sm text-muted-foreground">Potentiel</span>
+              <div className="w-3 h-3 bg-[#46bfdd] rounded" />
+              <span className="text-sm text-muted-foreground">Projets installes</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
+              <span className="text-sm text-muted-foreground">Projets autorisés</span>
             </div>
           </div>
 
