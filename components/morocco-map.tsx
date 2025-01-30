@@ -50,7 +50,6 @@ export function MoroccoMap() {
       .attr("style", "max-width: 100%; height: auto;")
 
     svg.selectAll("*").remove()
-    //  // (EH-partial)
 
     const loadMap = async () => {
       const [worldData, moroccoData] = await Promise.all([
@@ -78,15 +77,15 @@ export function MoroccoMap() {
         .append("path")
         .attr("d", pathGenerator)
         .attr("fill", "#d4b483")
-        .attr("stroke", "#d4b483")
+        .attr("stroke", "white")
         .attr("stroke-width", 0.5)
         .on("click", (event, d) => {
           console.log(d);
           setSelectedRegion({ id: "MA_00", properties: { "name:en": "Morocco", "name:ar": "المغرب", "name:fr": "Maroc", id: "MA_00" } });
           setOpen(false)
-          // Remove circles (radial visualization)
           svg.selectAll(".radial-viz").remove();
         });
+
       mapGroup
         .append("g")
         .selectAll("path")
@@ -136,7 +135,32 @@ export function MoroccoMap() {
               .attr("opacity", 0.7);
           });
 
-          // Assuming radialGroup is already defined
+          // Define a clipPath for the circle
+          radialGroup
+            .append("clipPath")
+            .attr("id", "clip-circle")
+            .append("circle")
+            .attr("r", radius * 0.8); // Use the radius of the second circle
+
+          // Add an image in the center and clip it to the circle
+          radialGroup
+            .append("image")
+            .attr("xlink:href", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsmaVwuESg1GcpzDhkxmdBk1I_J-3nvVPOSw&s")
+            .attr("x", -radius * 0.8)
+            .attr("y", -radius * 0.8)
+            .attr("width", radius * 1.6)
+            .attr("height", radius * 1.6)
+            .attr("clip-path", "url(#clip-circle)");
+
+          // Add another border circle around the image
+          radialGroup
+            .append("circle")
+            .attr("r", radius * 0.8)
+            .attr("fill", "none")
+            .attr("stroke", "#ffffff")
+            .attr("stroke-width", 2)
+            .attr("opacity", 0.9);
+
           radialGroup
             .append("foreignObject")
             .attr("x", `${region.id === "MA_05" ? -400 : region.id === "MA_01" ? -420 : region.id === "MA_02" ? -110 : region.id === "MA_07" ? -500 : -380}`)
@@ -153,8 +177,6 @@ export function MoroccoMap() {
               </div>
             </div>
           `);
-
-
         });
     };
 
@@ -179,7 +201,9 @@ export function MoroccoMap() {
           animate={{ x: 0 }}
           transition={{ duration: 1, delay: 2.5 }}
         >
-          <svg ref={svgRef} className="w-full max-h-screen"></svg>
+          <div className="h-full">
+            <svg ref={svgRef} className="w-full max-h-screen"></svg>
+          </div>
           <div className="h-full">
             <AquacultureDashboard regionName={regionStats} stats={idStats} />
           </div>
@@ -189,4 +213,3 @@ export function MoroccoMap() {
     </>
   )
 }
-

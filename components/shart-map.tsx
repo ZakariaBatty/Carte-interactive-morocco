@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Play } from "lucide-react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+// import { useState } from "react";
+// import { Play } from "lucide-react";
+// import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const dataSet: Record<string, { nombreParcels: number; superficie: number; projets: number }> = {
@@ -23,13 +23,13 @@ interface ProjectStatisticCardProps {
 const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
   const stats = dataSet[vd] || { nombreParcels: 0, superficie: 0, projets: 0 };
 
   return (
     <>
-      <div className="absolute bottom-10 left-[55%] shadow-xl rounded-lg overflow-hidden">
+      {/* <div className="absolute bottom-10 left-[55%] shadow-xl rounded-lg overflow-hidden">
         <div className="relative w-96 h-56">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
@@ -46,7 +46,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
             </DialogContent>
           </Dialog>
         </div>
-      </div>
+      </div> */}
 
       <div className="absolute top-4 left-4 shadow-xl rounded-lg overflow-hidden">
         <div className="w-full max-w-2xl mx-auto bg-white space-y-8 p-4">

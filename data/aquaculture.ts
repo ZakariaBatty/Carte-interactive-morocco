@@ -13,6 +13,7 @@ export const aquacultureData = {
          name: 'Pisciculture',
       },
    ],
+   // Morocco
    MA_00: {
       algoculture: {
          superficieLibre: 1000,
@@ -42,6 +43,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // Tanger-Tétouan-Al Hoceïma
    MA_01: {
       algoculture: {
          superficieLibre: 1000,
@@ -71,6 +73,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // L'Oriental
    MA_02: {
       algoculture: {
          superficieLibre: 1000,
@@ -100,6 +103,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // Souss-Massa
    MA_03: {
       algoculture: {
          superficieLibre: 1000,
@@ -129,6 +133,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // Guelmim-Oued Noun
    MA_04: {
       algoculture: {
          superficieLibre: 1000,
@@ -158,6 +163,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // Casablanca-Settat
    MA_05: {
       algoculture: {
          superficieLibre: 1000,
@@ -187,6 +193,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // Marrakech-Safi
    MA_06: {
       algoculture: {
          superficieLibre: 1000,
@@ -216,6 +223,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // Laâyoune-Sakia El Hamra
    MA_07: {
       algoculture: {
          superficieLibre: 1000,
@@ -245,6 +253,7 @@ export const aquacultureData = {
          emploiEstime: 56,
       },
    },
+   // Dakhla-Oued Ed-Dahab
    MA_08: {
       algoculture: {
          superficieLibre: 1000,
