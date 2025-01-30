@@ -6,16 +6,23 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const dataSet: Record<string, { nombreParcels: number; superficie: number; projets: number }> = {
+  //MA_01 Tanger-Tétouan-Al Hoceïma
   MA_01: { nombreParcels: 35, superficie: 40, projets: 45 },
+  //MA_02 L'Oriental
   MA_02: { nombreParcels: 50, superficie: 55, projets: 60 },
+  //MA_03 Souss-Massa
   MA_03: { nombreParcels: 25, superficie: 30, projets: 35 },
+  //MA_04 Guelmim-Oued Noun
   MA_04: { nombreParcels: 70, superficie: 80, projets: 75 },
+  // MA_05 Casablanca-Settat
   MA_05: { nombreParcels: 40, superficie: 45, projets: 50 },
+  //MA_06 Marrakech-Safi
   MA_06: { nombreParcels: 60, superficie: 65, projets: 70 },
+  //MA_07 Laâyoune-Sakia El Hamra
   MA_07: { nombreParcels: 30, superficie: 35, projets: 40 },
+  //MA_08 Dakhla-Oued Ed-Dahab
   MA_08: { nombreParcels: 80, superficie: 85, projets: 90 },
 };
-
 interface ProjectStatisticCardProps {
   vd: string;
 }

@@ -62,7 +62,11 @@ export function MoroccoMap() {
       const world = topojson.feature(worldData as unknown as TopologyWolrd, worldData.objects.countries as GeometryCollection);
       const morocco = topojson.feature(moroccoData as Topology, moroccoData.objects.regions);
 
-      const projection = d3.geoMercator().fitSize([width, height], morocco);
+      const projection = d3.geoMercator()
+        .center([-7.0926, 31.7917]) // Center on Morocco
+        .scale(2500) // Adjust scale as needed
+        .translate([width / 1.7, height / 3]);
+
       const pathGenerator = d3.geoPath().projection(projection);
 
       const mapGroup = svg.append("g");
@@ -132,7 +136,9 @@ export function MoroccoMap() {
               .attr("fill", "none")
               .attr("stroke", zone.color)
               .attr("stroke-width", 2)
-              .attr("opacity", 0.7);
+              .attr("opacity", 0.7)
+              .style("position", "absolute")
+              .style("z-index", "100");
           });
 
           // Define a clipPath for the circle
@@ -201,7 +207,7 @@ export function MoroccoMap() {
           animate={{ x: 0 }}
           transition={{ duration: 1, delay: 2.5 }}
         >
-          <div className="h-full">
+          <div className="h-full ">
             <svg ref={svgRef} className="w-full max-h-screen"></svg>
           </div>
           <div className="h-full">
