@@ -1,8 +1,8 @@
 "use client";
 
-// import { useState } from "react";
-// import { Play } from "lucide-react";
-// import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useState } from "react";
+import { Play } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 const dataSet: Record<string, { nombreParcels: number; superficie: number; projets: number }> = {
@@ -30,13 +30,13 @@ interface ProjectStatisticCardProps {
 const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
 
-  // const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const stats = dataSet[vd] || { nombreParcels: 0, superficie: 0, projets: 0 };
 
   return (
     <>
-      {/* <div className="absolute bottom-10 left-[55%] shadow-xl rounded-lg overflow-hidden">
+      <div className="absolute bottom-10 left-[55%] shadow-xl rounded-lg overflow-hidden">
         <div className="relative w-96 h-56">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
@@ -53,7 +53,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
             </DialogContent>
           </Dialog>
         </div>
-      </div> */}
+      </div>
 
       <div className="absolute top-4 left-4 shadow-xl rounded-lg overflow-hidden">
         <div className="w-full max-w-2xl mx-auto bg-white space-y-8 p-4">
@@ -68,9 +68,9 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Nombre de parcels</span>
                 </div>
-                <div className="flex w-full h-4 rounded-full overflow-hidden">
-                  <div className="bg-teal-900 h-full" style={{ width: `${stats.nombreParcels}%` }} />
-                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.nombreParcels}%` }} />
+                <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
+                  <div className="bg-teal-900 h-full" style={{ width: `${stats.nombreParcels}%` }} >{stats.nombreParcels}</div>
+                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.nombreParcels}%` }} >{100 - stats.nombreParcels}</div>
                 </div>
               </div>
 
@@ -79,19 +79,22 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Superficie</span>
                 </div>
-                <div className="flex w-full h-4 rounded-full overflow-hidden">
-                  <div className="bg-teal-900 h-full" style={{ width: `${stats.superficie}%` }} />
-                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.superficie}%` }} />
+                <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
+                  <div className="bg-teal-900 h-full" style={{ width: `${stats.superficie}%` }} >{stats.superficie}</div>
+                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.superficie}%` }} >{100 - stats.superficie}</div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-11 gap-0 text-xs text-muted-foreground mt-2">
-                {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((value) => (
-                  <div key={value} className="text-center">
-                    {value}%
-                  </div>
-                ))}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground">Projets</span>
+                </div>
+                <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
+                  <div className="bg-teal-900 h-full" style={{ width: `${stats.projets}%` }} >{stats.projets}</div>
+                  <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.projets}%` }} >{100 - stats.projets}</div>
+                </div>
               </div>
+
             </CardContent>
           </Card>
 
@@ -105,54 +108,14 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
               <div className="w-3 h-3 bg-cyan-400 rounded" />
               <span className="text-sm text-muted-foreground">Potentiel</span>
             </div>
-          </div>
-
-          {/* Second Chart */}
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle className="text-lg font-medium">Graphique Animé des données</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-6">
-                {/* Projets */}
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">Projets</span>
-                  </div>
-                  <div className="flex w-full h-4 rounded-full overflow-hidden">
-                    <div className="bg-teal-900 h-full" style={{ width: `${stats.projets}%` }} />
-                    <div className="bg-cyan-400 h-full" style={{ width: `${100 - stats.projets}%` }} />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-11 gap-0 text-xs text-muted-foreground mt-2">
-                  {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((value) => (
-                    <div key={value} className="text-center">
-                      {value}%
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Legend */}
-          <div className="flex justify-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-teal-900 rounded" />
-              <span className="text-sm text-muted-foreground">Litre</span>
-            </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-cyan-400 rounded" />
               <span className="text-sm text-muted-foreground">Potentiel</span>
             </div>
           </div>
+
         </div>
       </div>
-      {/* Animated Circles */}
-      <div className="absolute  bottom-2 left-2 ">
-
-      </div >
     </>
   );
 };
