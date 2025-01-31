@@ -123,8 +123,8 @@ export function MoroccoMap() {
             .attr("transform", `translate(${center[0]}, ${center[1]})`);
 
           const zones = [
-            { radius: radius * 0.4, color: "#38bdf8" },
-            { radius: radius * 0.6, color: "#7dd3fc" },
+            // { radius: radius * 0.4, color: "#38bdf8" },
+            // { radius: radius * 0.6, color: "#7dd3fc" },
             { radius: radius * 0.8, color: "#bae6fd" },
             { radius: radius, color: "#e0f2fe" },
           ];
@@ -146,17 +146,18 @@ export function MoroccoMap() {
             .append("clipPath")
             .attr("id", "clip-circle")
             .append("circle")
-            .attr("r", radius * 0.9); // Use the radius of the second circle
+            .attr("r", radius * 0.8); // Use the radius of the second circle
 
           // Add an image in the center and clip it to the circle
           radialGroup
             .append("image")
-            .attr("xlink:href", "/002.png")
+            .attr("xlink:href", `${region.id === "MA_01" ? '/morocco/region/MA_01.png' : region.id === "MA_02" ? '/morocco/region/MA_02.png' : region.id === "MA_03" ? '/morocco/region/MA_03.png' : region.id === "MA_04" ? '/morocco/region/MA_04.png' : region.id === "MA_05" ? '/morocco/region/MA_05.png' : region.id === "MA_06" ? '/morocco/region/MA_06.png' : region.id === "MA_07" ? '/morocco/region/MA_07.png' : '/morocco/region/MA_08.png'}`)
             .attr("x", -radius * 0.8)
             .attr("y", -radius * 0.8)
             .attr("width", radius * 1.6)
             .attr("height", radius * 1.6)
             .attr("clip-path", "url(#clip-circle)");
+
 
           // Add another border circle around the image
           radialGroup
