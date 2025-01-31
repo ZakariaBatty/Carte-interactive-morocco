@@ -151,7 +151,7 @@ export function MoroccoMap() {
           // Add an image in the center and clip it to the circle
           radialGroup
             .append("image")
-            .attr("xlink:href", `${region.id === "MA_01" ? '/morocco/picture/MA_01.png' : region.id === "MA_02" ? '/morocco/picture/MA_02.png' : region.id === "MA_03" ? '/morocco/picture/MA_03.png' : region.id === "MA_04" ? '/morocco/picture/MA_04.png' : region.id === "MA_05" ? '/morocco/picture/MA_05.png' : region.id === "MA_06" ? '/morocco/picture/MA_06.png' : region.id === "MA_07" ? '/morocco/picture/MA_07.png' : '/morocco/picture/MA_08.png'}`)
+            .attr("xlink:href", `${region.id === "MA_01" ? '/morocco/pictures/MA_01.png' : region.id === "MA_02" ? '/morocco/pictures/MA_02.png' : region.id === "MA_03" ? '/morocco/pictures/MA_03.png' : region.id === "MA_04" ? '/morocco/pictures/MA_04.png' : region.id === "MA_05" ? '/morocco/pictures/MA_05.png' : region.id === "MA_06" ? '/morocco/pictures/MA_06.png' : region.id === "MA_07" ? '/morocco/pictures/MA_07.png' : '/morocco/pictures/MA_08.png'}`)
             .attr("x", -radius * 0.8)
             .attr("y", -radius * 0.8)
             .attr("width", radius * 1.6)
