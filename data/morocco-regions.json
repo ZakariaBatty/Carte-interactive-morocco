@@ -17,7 +17,7 @@
                   "name:ar": "طنجة تطوان الحسيمة",
                   "name": "Tanger-Tétouan-Al Hoceima"
                },
-               "arcs": [[[-7, -8, -9, -10, -11, -12, -13, 2]]]
+               "arcs": [[[0, -8, -9, -10, -11, -12, -13, 2]]]
             },
             {
                "type": "MultiPolygon",
