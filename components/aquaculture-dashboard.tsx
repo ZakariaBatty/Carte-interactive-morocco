@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { aquacultureData } from "@/data/aquaculture"
 
-export function AquacultureDashboard({ regionName }: { regionName: string | null }) {
+export function AquacultureDashboard({ regionName, stats = "MA_00" }: { regionName: string | null; stats: string }) {
   const [selectedType, setSelectedType] = useState<string | "all">("all")
 
   const statCategories = [
@@ -23,14 +23,16 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
       : aquacultureData.categories.filter((cat) => cat.id === selectedType)
 
   return (
-    <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen rounded-none overflow-y-auto">
+    <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen max-h-screen rounded-none overflow-y-auto w-full sm:w-1/3 lg:w-1/5">
       <div className="space-y-6 h-full">
         <div>
-          <h2 className="text-2xl mb-4 p-5 text-center bg-[#1e3f44]  font-bold text-[#46bfdd]">{regionName || "MOROCO"}</h2>
+          <h2 className="text-lg sm:text-xl lg:text-2xl mb-4 p-5 text-center bg-[#1e3f44] font-bold text-[#46bfdd]">
+            {regionName || "MOROCCO"}
+          </h2>
           <select
             value={selectedType}
             onChange={(e) => setSelectedType(e.target.value)}
-            className="w-full bg-[#2d3f46] text-white font-bold p-2 rounded-md border border-[#4fd1c5]/20"
+            className="w-full bg-[#2d3f46] text-white font-bold p-2 rounded-md border border-[#4fd1c5]/20 text-sm sm:text-base"
           >
             <option value="all">Filtrer par type d&apos;élevage</option>
             {aquacultureData.categories.map((category) => (
@@ -40,16 +42,24 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
             ))}
           </select>
         </div>
+
         {statCategories.map((stat) => (
           <div key={stat.key}>
-            <h3 className="text-xl font-bold text-[#46bfdd]  mb-2">{stat.label}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <h3 className="font-bold text-sm sm:text-base leading-5 text-[#46BFDE] mb-1">{stat.label}</h3>
+            <div
+              className={`grid gap-2 ${filteredCategories.length > 1 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-1"
+                }`}
+            >
               {filteredCategories.map((category) => (
-                <div key={category.id} className="flex flex-col justify-between items-center border-b border-[#4fd1c5]/20 pb-2">
-                  <span className="text-sm text-gray-300">{category.name}</span>
-                  <span className="text-2xl text-white font-bold ">
-                    {aquacultureData.stats[category.id as keyof typeof aquacultureData.stats][stat.key as keyof typeof aquacultureData.stats.algoculture]}
-                    {stat.unit && <span className="text-sm ml-1">{stat.unit}</span>}
+                <div
+                  key={category.id}
+                  className={`flex flex-col justify-between border-b border-[#4fd1c5]/20 pb-2 ${filteredCategories.length > 1 ? "items-center" : "items-start"
+                    }`}
+                >
+                  <span className="font-light text-xs sm:text-sm">{category.name}</span>
+                  <span className="text-white font-bold text-lg sm:text-xl mt-2">
+                    {(aquacultureData[stats as keyof typeof aquacultureData] as { [key: string]: { [key: string]: number } })?.[category.id]?.[stat.key] ?? "N/A"}
+                    {stat.unit && <span className="ml-1">{stat.unit}</span>}
                   </span>
                 </div>
               ))}
@@ -60,4 +70,3 @@ export function AquacultureDashboard({ regionName }: { regionName: string | null
     </Card>
   )
 }
-
