@@ -5,24 +5,26 @@ import { Play } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
-const dataSet: Record<string, { nombreParcels: number; superficie: number; projets: number }> = {
+
+const dataSet: Record<string, { superficieTotal: number; superficieLibre: number; nombreParcelsTotal: number; nombreParcelsLibre: number; nombreProjetsTotal: number; nombreProjetsInstalles: number }> = {
   //MA_01 Tanger-Tétouan-Al Hoceïma
-  MA_01: { nombreParcels: 35, superficie: 40, projets: 45 },
+  MA_01: { superficieTotal: 487, superficieLibre: 270, nombreParcelsTotal: 24, nombreParcelsLibre: 12, nombreProjetsTotal: 16, nombreProjetsInstalles: 7 },
   //MA_02 L'Oriental
-  MA_02: { nombreParcels: 50, superficie: 55, projets: 60 },
+  MA_02: { superficieTotal: 2242, superficieLibre: 1330, nombreParcelsTotal: 124, nombreParcelsLibre: 74, nombreProjetsTotal: 18, nombreProjetsInstalles: 6 },
   //MA_03 Souss-Massa
-  MA_03: { nombreParcels: 25, superficie: 30, projets: 35 },
+  MA_03: { superficieTotal: 5748, superficieLibre: 2070, nombreParcelsTotal: 255, nombreParcelsLibre: 138, nombreProjetsTotal: 47, nombreProjetsInstalles: 15 },
   //MA_04 Guelmim-Oued Noun
-  MA_04: { nombreParcels: 70, superficie: 80, projets: 75 },
+  MA_04: { superficieTotal: 1800, superficieLibre: 795, nombreParcelsTotal: 104, nombreParcelsLibre: 53, nombreProjetsTotal: 12, nombreProjetsInstalles: 2 },
   // MA_05 Casablanca-Settat
-  MA_05: { nombreParcels: 40, superficie: 45, projets: 50 },
+  MA_05: { superficieTotal: 611, superficieLibre: 580, nombreParcelsTotal: 65, nombreParcelsLibre: 32, nombreProjetsTotal: 11, nombreProjetsInstalles: 9 },
   //MA_06 Marrakech-Safi
-  MA_06: { nombreParcels: 60, superficie: 65, projets: 70 },
+  MA_06: { superficieTotal: 6060, superficieLibre: 5270, nombreParcelsTotal: 300, nombreParcelsLibre: 260, nombreProjetsTotal: 5, nombreProjetsInstalles: 1 },
   //MA_07 Laâyoune-Sakia El Hamra
-  MA_07: { nombreParcels: 30, superficie: 35, projets: 40 },
+  MA_07: { superficieTotal: 735, superficieLibre: 570, nombreParcelsTotal: 49, nombreParcelsLibre: 38, nombreProjetsTotal: 2, nombreProjetsInstalles: 1 },
   //MA_08 Dakhla-Oued Ed-Dahab
-  MA_08: { nombreParcels: 80, superficie: 85, projets: 90 },
+  MA_08: { superficieTotal: 6424, superficieLibre: 1640, nombreParcelsTotal: 655, nombreParcelsLibre: 73, nombreProjetsTotal: 388, nombreProjetsInstalles: 136 },
 };
+
 interface ProjectStatisticCardProps {
   vd: string;
 }
@@ -32,7 +34,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const stats = dataSet[vd] || { nombreParcels: 0, superficie: 0, projets: 0 };
+  const stats = dataSet[vd] || { superficieTotal: 0, superficieLibre: 0, nombreParcelsTotal: 0, nombreParcelsLibre: 0, nombreProjetsTotal: 0, nombreProjetsInstalles: 0 };
 
   return (
     <>
@@ -66,23 +68,36 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
               {/* Nombre de Parcels */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Nombre de parcels</span>
+                  <span className="text-sm text-muted-foreground">Superficie (Ha)</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-[#46bfdd] h-full" style={{ width: `${stats.nombreParcels}%` }} >{stats.nombreParcels}</div>
-                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${100 - stats.nombreParcels}%` }} >{100 - stats.nombreParcels}</div>
+                  <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.superficieTotal - stats.superficieLibre) / stats.superficieTotal * 100}%` }} >{stats.superficieTotal - stats.superficieLibre}</div>
+                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${(stats.superficieLibre / stats.superficieTotal) * 100}%` }} >{stats.superficieLibre}</div>
                 </div>
               </div>
 
               {/* Superficie */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Superficie</span>
+                  <span className="text-sm text-muted-foreground">Nombre de parcels</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-[#46bfdd] h-full" style={{ width: `${stats.superficie}%` }} >{stats.superficie}</div>
-                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${100 - stats.superficie}%` }} >{100 - stats.superficie}</div>
+                  <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.nombreParcelsTotal - stats.nombreParcelsLibre) / stats.nombreParcelsTotal * 100}%` }} >{stats.nombreParcelsTotal - stats.nombreParcelsLibre}</div>
+                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${(stats.nombreParcelsLibre / stats.nombreParcelsTotal) * 100}%` }} >{stats.nombreParcelsLibre}</div>
                 </div>
+              </div>
+
+              <div className="flex justify-center gap-20">
+                <div className="flex items-center gap-2" />
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
+                  <span className="text-sm text-muted-foreground">Libre</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#46bfdd] rounded" />
+                  <span className="text-sm text-muted-foreground">Potentiel</span>
+                </div>
+                <div className="flex items-center gap-2" />
               </div>
 
               <div className="space-y-2">
@@ -90,33 +105,28 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                   <span className="text-sm text-muted-foreground">Projets</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-[#ff9500] h-full" style={{ width: `${stats.projets}%` }} >{stats.projets}</div>
-                  <div className="bg-[#b7886a] h-full" style={{ width: `${100 - stats.projets}%` }} >{100 - stats.projets}</div>
+                  <div className="bg-[#b7886a] h-full" style={{ width: `${(stats.nombreProjetsInstalles / stats.nombreProjetsTotal) * 100}%` }} >{stats.nombreProjetsInstalles}</div>
+                  <div className="bg-[#ff9500] h-full" style={{ width: `${(stats.nombreProjetsTotal - stats.nombreProjetsInstalles) / stats.nombreProjetsTotal * 100}%` }} >{stats.nombreProjetsTotal - stats.nombreProjetsInstalles}</div>
                 </div>
               </div>
 
+              <div className="flex justify-center gap-10">
+                <div className="flex items-center gap-2" />
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#b7886a] rounded" />
+                  <span className="text-sm text-muted-foreground">Projets installés </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#ff9500]  rounded" />
+                  <span className="text-sm text-muted-foreground">Projets autorisés</span>
+                </div>
+                <div className="flex items-center gap-2" />
+              </div>
             </CardContent>
           </Card>
 
           {/* Legend */}
-          <div className="flex justify-center gap-4">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-[#ff9500] rounded" />
-              <span className="text-sm text-muted-foreground">Libre</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-[#b7886a] rounded" />
-              <span className="text-sm text-muted-foreground">Potentiel</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-[#46bfdd] rounded" />
-              <span className="text-sm text-muted-foreground">Projets installes</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
-              <span className="text-sm text-muted-foreground">Projets autorisés</span>
-            </div>
-          </div>
+
 
         </div>
       </div>

@@ -59,7 +59,7 @@ export default function Page() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <Image src="/Logo.svg" alt="ANDA Logo" width={300} height={100} className="mx-auto" />
+              <Image src="/morocco/Logo.svg" alt="ANDA Logo" width={300} height={100} className="mx-auto" />
             </motion.div>
 
             {/* Main Content */}

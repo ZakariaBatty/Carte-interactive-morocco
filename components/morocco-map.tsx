@@ -7,8 +7,8 @@ import { GeometryCollection, GeometryObject } from "topojson-specification"
 import type { Region } from "@/types/region"
 import { AquacultureDashboard } from "./aquaculture-dashboard"
 import { motion } from "framer-motion"
-import moroccoMap from "../data/morocco-regions.json"
-import worldMap from "../data/wolrd-regions.json"
+import moroccoMap from "../public/data/morocco-regions.json"
+import worldMap from "../public/data/wolrd-regions.json"
 
 import { Topology } from "@/types/morocco"
 import ProjectStatisticCard from "./shart-map"
@@ -123,10 +123,10 @@ export function MoroccoMap() {
             .attr("transform", `translate(${center[0]}, ${center[1]})`);
 
           const zones = [
-            { radius: radius * 0.4, color: "#38bdf8" },
-            { radius: radius * 0.6, color: "#7dd3fc" },
-            { radius: radius * 0.8, color: "#bae6fd" },
-            { radius: radius, color: "#e0f2fe" },
+            // { radius: radius * 0.4, color: "#38bdf8" },
+            // { radius: radius * 0.6, color: "#7dd3fc" },
+            { radius: radius * 0.9, color: "#bae6fd" },
+            // { radius: radius, color: "#e0f2fe" },
           ];
 
           zones.forEach((zone) => {
@@ -149,14 +149,15 @@ export function MoroccoMap() {
             .attr("r", radius * 0.8); // Use the radius of the second circle
 
           // Add an image in the center and clip it to the circle
-          radialGroup
-            .append("image")
-            .attr("xlink:href", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsmaVwuESg1GcpzDhkxmdBk1I_J-3nvVPOSw&s")
-            .attr("x", -radius * 0.8)
-            .attr("y", -radius * 0.8)
-            .attr("width", radius * 1.6)
-            .attr("height", radius * 1.6)
-            .attr("clip-path", "url(#clip-circle)");
+          // radialGroup
+          //   .append("image")
+          //   .attr("xlink:href", `${region.id === "MA_01" ? '/morocco/pictures/MA_01.png' : region.id === "MA_02" ? '/morocco/pictures/MA_02.png' : region.id === "MA_03" ? '/morocco/pictures/MA_03.png' : region.id === "MA_04" ? '/morocco/pictures/MA_04.png' : region.id === "MA_05" ? '/morocco/pictures/MA_05.png' : region.id === "MA_06" ? '/morocco/pictures/MA_06.png' : region.id === "MA_07" ? '/morocco/pictures/MA_07.png' : '/morocco/pictures/MA_08.png'}`)
+          //   .attr("x", -radius * 0.8)
+          //   .attr("y", -radius * 0.8)
+          //   .attr("width", radius * 1.6)
+          //   .attr("height", radius * 1.6)
+          //   .attr("clip-path", "url(#clip-circle)");
+
 
           // Add another border circle around the image
           radialGroup
@@ -176,7 +177,7 @@ export function MoroccoMap() {
             .html(`
             <div style="text-align: center; color: white;">
               <p style="font-size: 16px; font-weight: bold; background: black; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                20 <span style="font-weight: normal;">Projets Aquacole</span>
+                 <span style="font-weight: normal;">Projets Aquacole</span>
               </p>
               <div style="background: #3BAFDA; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 6px;">
                 ${region.properties['name']}
