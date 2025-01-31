@@ -12,6 +12,10 @@ export const aquacultureData = {
          id: 'pisciculture',
          name: 'Pisciculture',
       },
+      {
+         id: 'creveticulture',
+         name: 'Creveticulture',
+      },
    ],
    // Morocco
    MA_00: {
