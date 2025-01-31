@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Card } from "@/components/ui/card"
-import { aquacultureData } from "@/data/aquaculture"
+import { aquacultureData } from "@/public/data/aquaculture"
 
 export function AquacultureDashboard({ regionName, stats = "MA_00" }: { regionName: string | null; stats: string }) {
   const [selectedType, setSelectedType] = useState<string | "all">("all")
