@@ -146,12 +146,12 @@ export function MoroccoMap() {
             .append("clipPath")
             .attr("id", "clip-circle")
             .append("circle")
-            .attr("r", radius * 0.8); // Use the radius of the second circle
+            .attr("r", radius * 0.9); // Use the radius of the second circle
 
           // Add an image in the center and clip it to the circle
           radialGroup
             .append("image")
-            .attr("xlink:href", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsmaVwuESg1GcpzDhkxmdBk1I_J-3nvVPOSw&s")
+            .attr("xlink:href", "/002.png")
             .attr("x", -radius * 0.8)
             .attr("y", -radius * 0.8)
             .attr("width", radius * 1.6)
