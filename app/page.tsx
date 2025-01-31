@@ -15,6 +15,12 @@ export default function Page() {
     setTimeout(() => setShowMap(true), 2000)
   }
 
+
+  const handleResetClick = () => {
+    setShowMap(false);
+    setHideContent(false);
+  };
+
   return (
     <div className="relative min-h-screen w-full bg-[#0A3B44] overflow-hidden">
       {/* World Map Background */}
@@ -53,7 +59,7 @@ export default function Page() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <Image src="/placeholder.svg" alt="ANDA Logo" width={300} height={100} className="mx-auto" />
+              <Image src="/morocco/Logo.svg" alt="ANDA Logo" width={300} height={100} className="mx-auto" />
             </motion.div>
 
             {/* Main Content */}
@@ -104,6 +110,16 @@ export default function Page() {
 
       {/* Morocco Map */}
       <AnimatePresence>{showMap && <MoroccoMap />}</AnimatePresence>
+
+      {/* Reset Button (Only visible when the map is shown) */}
+      {showMap && (
+        <button
+          onClick={handleResetClick}
+          className="absolute bottom-10 left-[10%] transform -translate-x-1/2 bg-[#E5B975] text-[#0A3B44] px-6 py-2 rounded-full shadow-md"
+        >
+          Reset Experience
+        </button>
+      )}
     </div>
   )
 }

@@ -1,0 +1,23 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+   RewriteBase /morocco/
+ 
+   # If the request is not for a valid directory
+   RewriteCond %{REQUEST_FILENAME} !-d
+   # If the request is not for a valid file
+   RewriteCond %{REQUEST_FILENAME} !-f
+   # If the request is not for a valid link
+   RewriteCond %{REQUEST_FILENAME} !-l
+ 
+   # Rewrite all other URLs to index.html
+   RewriteRule ^(.*)$ index.html [L]
+ </IfModule>
+ 
+ # Prevent directory listing
+ Options -Indexes
+ 
+ # Set default character set
+ AddDefaultCharset UTF-8
+ 
+ # Serve index.html for 404 errors
+ ErrorDocument 404 /morocco/index.html

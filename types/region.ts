@@ -26,4 +26,5 @@ export interface Region {
       'name:en': string;
       id: string;
    };
+   id: string;
 }
