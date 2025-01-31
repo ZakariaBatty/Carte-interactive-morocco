@@ -87,6 +87,19 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                 </div>
               </div>
 
+              <div className="flex justify-center gap-20">
+                <div className="flex items-center gap-2" />
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
+                  <span className="text-sm text-muted-foreground">Libre</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#46bfdd] rounded" />
+                  <span className="text-sm text-muted-foreground">Potentiel</span>
+                </div>
+                <div className="flex items-center gap-2" />
+              </div>
+
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Projets</span>
@@ -97,25 +110,19 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                 </div>
               </div>
 
+              <div className="flex justify-center gap-10">
+                <div className="flex items-center gap-2" />
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#b7886a] rounded" />
+                  <span className="text-sm text-muted-foreground">Projets installés </span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-[#ff9500]  rounded" />
+                  <span className="text-sm text-muted-foreground">Projets autorisés</span>
+                </div>
+                <div className="flex items-center gap-2" />
+              </div>
             </CardContent>
-            <div className="flex justify-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
-                <span className="text-sm text-muted-foreground">Libre</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#46bfdd] rounded" />
-                <span className="text-sm text-muted-foreground">Potentiel</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#b7886a] rounded" />
-                <span className="text-sm text-muted-foreground">Projets installés </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#ff9500]  rounded" />
-                <span className="text-sm text-muted-foreground">Projets autorisés</span>
-              </div>
-            </div>
           </Card>
 
           {/* Legend */}

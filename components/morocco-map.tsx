@@ -176,7 +176,7 @@ export function MoroccoMap() {
             .html(`
             <div style="text-align: center; color: white;">
               <p style="font-size: 16px; font-weight: bold; background: black; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                20 <span style="font-weight: normal;">Projets Aquacole</span>
+                 <span style="font-weight: normal;">Projets Aquacole</span>
               </p>
               <div style="background: #3BAFDA; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 6px;">
                 ${region.properties['name']}

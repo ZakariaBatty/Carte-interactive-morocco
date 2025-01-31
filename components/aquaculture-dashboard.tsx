@@ -50,19 +50,24 @@ export function AquacultureDashboard({ regionName, stats = "MA_00" }: { regionNa
               className={`grid gap-2 ${filteredCategories.length > 1 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-1"
                 }`}
             >
-              {filteredCategories.map((category) => (
-                <div
-                  key={category.id}
-                  className={`flex flex-col justify-between border-b border-[#4fd1c5]/20 pb-2 ${filteredCategories.length > 1 ? "items-center" : "items-start"
-                    }`}
-                >
-                  <span className="font-light text-xs sm:text-sm">{category.name}</span>
-                  <span className="text-white font-bold text-lg sm:text-xl mt-2">
-                    {(aquacultureData[stats as keyof typeof aquacultureData] as { [key: string]: { [key: string]: number } })?.[category.id]?.[stat.key] ?? "N/A"}
-                    {stat.unit && <span className="ml-1">{stat.unit}</span>}
-                  </span>
-                </div>
-              ))}
+              {filteredCategories
+                .filter((category) => {
+                  const value = (aquacultureData[stats as keyof typeof aquacultureData] as { [key: string]: { [key: string]: number } })?.[category.id]?.[stat.key];
+                  return category.name !== "Creveticulture" || value !== 0;
+                })
+                .map((category) => (
+                  <div
+                    key={category.id}
+                    className={`flex flex-col justify-between border-b border-[#4fd1c5]/20 pb-2 ${filteredCategories.length > 1 ? "items-center" : "items-start"
+                      }`}
+                  >
+                    <span className="font-light text-xs sm:text-sm">{category.name}</span>
+                    <span className="text-white font-bold text-lg sm:text-xl mt-2">
+                      {(aquacultureData[stats as keyof typeof aquacultureData] as { [key: string]: { [key: string]: number } })?.[category.id]?.[stat.key] ?? "0"}
+                      {stat.unit && <span className="ml-1">{stat.unit}</span>}
+                    </span>
+                  </div>
+                ))}
             </div>
           </div>
         ))}
