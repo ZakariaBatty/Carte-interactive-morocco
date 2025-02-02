@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { cn } from "@/lib/utils";
 
 
 const dataSet: Record<string, { superficieTotal: number; superficieLibre: number; nombreParcelsTotal: number; nombreParcelsLibre: number; nombreProjetsTotal: number; nombreProjetsInstalles: number }> = {
@@ -25,6 +26,18 @@ const dataSet: Record<string, { superficieTotal: number; superficieLibre: number
   MA_08: { superficieTotal: 6424, superficieLibre: 1640, nombreParcelsTotal: 655, nombreParcelsLibre: 73, nombreProjetsTotal: 388, nombreProjetsInstalles: 136 },
 };
 
+const dataVd: Record<string, { vds: string }> = {
+  MA_01: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_02: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_03: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_04: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_05: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_06: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_07: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_08: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+};
+
+
 interface ProjectStatisticCardProps {
   vd: string;
 }
@@ -36,22 +49,41 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
   const stats = dataSet[vd] || { superficieTotal: 0, superficieLibre: 0, nombreParcelsTotal: 0, nombreParcelsLibre: 0, nombreProjetsTotal: 0, nombreProjetsInstalles: 0 };
 
+  // get vds by id
+  const vds = dataVd[vd]?.vds;
+  const isYouTube = vds?.includes("youtube.com");
+
   return (
     <>
-      <div className="absolute bottom-10 left-[55%] shadow-xl rounded-lg overflow-hidden">
+      <div className={cn("absolute left-[55%] shadow-xl rounded-lg overflow-hidden",
+        vd === "MA_01" ? "bottom-72" :
+          vd === "MA_02" ? "bottom-52" :
+            vd === "MA_03" ? "bottom-32" :
+              vd === "MA_04" ? "bottom-11" :
+                vd === "MA_05" ? "bottom-72" :
+                  vd === "MA_06" ? "bottom-72" :
+                    vd === "MA_07" ? "bottom-72" : "bottom-11"
+      )}>
         <div className="relative w-96 h-56">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
               <Play size={48} className="text-white opacity-80 cursor-pointer" />
             </DialogTrigger>
             <DialogContent className="max-w-4xl p-0 bg-black">
-              <iframe
-                width="100%"
-                height="500"
-                src={`https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1`}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              ></iframe>
+              {isYouTube ? (
+                <iframe
+                  width="100%"
+                  height="500"
+                  src={vds}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                ></iframe>
+              ) : (
+                <video width="100%" height="500" controls>
+                  <source src={vds} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              )}
             </DialogContent>
           </Dialog>
         </div>
