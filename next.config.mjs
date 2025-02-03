@@ -5,8 +5,8 @@ const nextConfig = {
     unoptimized: true,
   },
   // base
-  basePath: '/morocco',
-  assetPrefix: '/morocco/',
+  // basePath: '/morocco',
+  // assetPrefix: '/morocco/',
 };
 
 export default nextConfig;
