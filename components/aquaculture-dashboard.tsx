@@ -64,7 +64,7 @@ type StatCategoryProps = {
   selectedType: string | "all"
 }
 
-function StatCategory({ stat, filteredCategories, regionData }: StatCategoryProps) {
+function StatCategory({ stat, filteredCategories, regionData, selectedType }: StatCategoryProps) {
   const total = calculateTotal(regionData, stat.key)
 
   return (
@@ -72,7 +72,11 @@ function StatCategory({ stat, filteredCategories, regionData }: StatCategoryProp
       <div className="p-1 text-white">
         <div className="text-xl text-[#46bfdd] font-semibold mb-1 border-b-2 border-white pb-2">
           {stat.label} <span className="ml-1 text-white">
-            ({total}  {stat.unit && <span className="ml-1 text-white">{stat.unit}</span>})
+            {selectedType === "all" ? (
+              <>
+                {total} {stat.unit && <span className="ml-1 text-white">{stat.unit}</span>}
+              </>
+            ) : ''}
           </span>
 
         </div>

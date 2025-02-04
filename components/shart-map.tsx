@@ -30,19 +30,19 @@ const dataSet: Record<string, { superficieTotal: number; superficieLibre: number
 
 const dataVd: Record<string, { vds: string }> = {
   //MA_01 Tanger-Tétouan-Al Hoceïma
-  MA_01: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_01: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk" },
   //MA_02 L'Oriental
   MA_02: { vds: "https://www.youtube.com/embed/PCuNSqFWiKI?si=LGHzYc7eoAxlgCth" },
   //MA_03 Souss-Massa
   MA_03: { vds: "https://www.youtube.com/embed/Pjd7L4hGJ48?si=aVvQV-hk71UrE3v8" },
   //MA_04 Guelmim-Oued Noun
-  MA_04: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_04: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk" },
   // MA_05 Casablanca-Settat
-  MA_05: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_05: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk" },
   //MA_06 Marrakech-Safi
-  MA_06: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_06: { vds: "https://www.youtube.com/embed/gn33_WHLKvc?si=TOd9Vpc_uyWwc02x" },
   //MA_07 Laâyoune-Sakia El Hamra
-  MA_07: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  MA_07: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk" },
   //MA_08 Dakhla-Oued Ed-Dahab
   MA_08: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk" },
 };
@@ -141,7 +141,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
               {/* Superficie */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Nombre de parcells ({stats.nombreParcelsTotal})</span>
+                  <span className="text-sm text-muted-foreground">Nombre de parcelles ({stats.nombreParcelsTotal})</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
                   <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.nombreParcelsTotal - stats.nombreParcelsLibre) / stats.nombreParcelsTotal * 100}%` }} >{stats.nombreParcelsTotal - stats.nombreParcelsLibre}</div>
@@ -153,7 +153,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                 <div className="flex items-center gap-2" />
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-[#46bfdd] rounded" />
-                  <span className="text-sm text-muted-foreground">Occupée</span>
+                  <span className="text-sm text-muted-foreground">Attribuée</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
