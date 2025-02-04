@@ -9,7 +9,7 @@ export const statCategories = [
 ];
 
 export function formatNumber(num: number): string {
-   return num.toLocaleString('de-DE', { maximumFractionDigits: 0 });
+   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 export function calculateTotal(
