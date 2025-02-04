@@ -180,9 +180,9 @@ export const aquacultureData = {
       },
       pisciculture: {
          superficieTotal: 1800,
-         superficieLibre: 0,
+         superficieLibre: 1800,
          nombreParcelles: 2,
-         nombreParcellesLibre: 0,
+         nombreParcellesLibre: 2,
          projetsAutorises: 0,
          projetsInstalles: 0,
          productionEstimee: 40000,
