@@ -9,7 +9,9 @@ export const statCategories = [
 ];
 
 export function formatNumber(num: number): string {
-   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+   const parts = num.toString().split('.');
+   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ').trim();
+   return parts.join('.');
 }
 
 export function calculateTotal(

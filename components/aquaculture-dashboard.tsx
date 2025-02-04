@@ -71,10 +71,10 @@ function StatCategory({ stat, filteredCategories, regionData, selectedType }: St
     <div className="rounded-md overflow-hidden">
       <div className="p-1 text-white">
         <div className="text-xl text-[#46bfdd] font-semibold mb-1 border-b-2 border-white pb-2">
-          {stat.label} <span className="ml-1 text-white">
+          {stat.label} <span className={`${stat.unit ? 'ml-1 text-white' : 'text-white'}`}>
             {selectedType === "all" ? (
               <>
-                {total} {stat.unit && <span className="ml-1 text-white">{stat.unit}</span>}
+                ({total} {stat.unit && <span className=" text-white">{stat.unit}</span>})
               </>
             ) : ''}
           </span>
