@@ -74,7 +74,7 @@ function StatCategory({ stat, filteredCategories, regionData }: StatCategoryProp
 
   return (
     <div className="rounded-md overflow-hidden">
-      <div className="p-4 text-white">
+      <div className="p-1 text-white">
         <div className="text-xl text-[#46bfdd] font-semibold mb-1 border-b-2 border-white pb-2">
           {stat.label} <span className="ml-1 text-white">{total}</span>
           {stat.unit && <span className="ml-1 text-white">{stat.unit}</span>}
@@ -88,7 +88,7 @@ function StatCategory({ stat, filteredCategories, regionData }: StatCategoryProp
             .map((category) => (
               <div key={category.id} className="text-center">
                 <div className="text-sm text-gray-300 mb-1">{category.name}</div>
-                <div className="text-xl font-bold">
+                <div className="text-sm font-bold">
                   {formatValue(regionData?.[category.id]?.[stat.key] ?? "0")}
                   {stat.unit && <span className="ml-1">{stat.unit}</span>}
                 </div>
