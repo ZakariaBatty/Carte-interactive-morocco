@@ -53,18 +53,20 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
   const vds = dataVd[vd]?.vds;
   const isYouTube = vds?.includes("youtube.com");
 
+  // <div className={cn("absolute left-[55%] shadow-xl rounded-lg overflow-hidden",
+  //   vd === "MA_01" ? "bottom-72" :
+  //     vd === "MA_02" ? "bottom-52" :
+  //       vd === "MA_03" ? "bottom-32" :
+  //         vd === "MA_04" ? "bottom-11" :
+  //           vd === "MA_05" ? "bottom-72" :
+  //             vd === "MA_06" ? "bottom-72" :
+  //               vd === "MA_07" ? "bottom-72" : "bottom-11"
+  // )}>
+
   return (
     <>
-      <div className={cn("absolute left-[55%] shadow-xl rounded-lg overflow-hidden",
-        vd === "MA_01" ? "bottom-72" :
-          vd === "MA_02" ? "bottom-52" :
-            vd === "MA_03" ? "bottom-32" :
-              vd === "MA_04" ? "bottom-11" :
-                vd === "MA_05" ? "bottom-72" :
-                  vd === "MA_06" ? "bottom-72" :
-                    vd === "MA_07" ? "bottom-72" : "bottom-11"
-      )}>
-        <div className="relative w-96 h-56">
+      <div className={cn("absolute left-[52%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
+        <div className="relative w-[36rem] h-[20rem]">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
               <Play size={48} className="text-white opacity-80 cursor-pointer" />
