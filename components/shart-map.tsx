@@ -116,7 +116,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
               {/* Superficie */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Nombre de parcells ({stats.nombreParcelsTotal} Ha)</span>
+                  <span className="text-sm text-muted-foreground">Nombre de parcells ({stats.nombreParcelsTotal})</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
                   <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.nombreParcelsTotal - stats.nombreParcelsLibre) / stats.nombreParcelsTotal * 100}%` }} >{stats.nombreParcelsTotal - stats.nombreParcelsLibre}</div>
@@ -139,7 +139,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Projets ({stats.nombreProjetsTotal} Ha)</span>
+                  <span className="text-sm text-muted-foreground">Projets ({stats.nombreProjetsTotal})</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
                   <div className="bg-[#b7886a] h-full" style={{ width: `${(stats.nombreProjetsInstalles / stats.nombreProjetsTotal) * 100}%` }} >{stats.nombreProjetsInstalles}</div>
