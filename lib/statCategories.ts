@@ -3,9 +3,9 @@ export const statCategories = [
    { key: 'nombreParcelles', label: 'Nombre de parcelles' },
    { key: 'projetsAutorises', label: 'Projets autorisés' },
    { key: 'projetsInstalles', label: 'Projets installés' },
-   { key: 'productionEstimee', label: 'Production estimée' },
-   { key: 'investissementEstime', label: 'Investissement estimé' },
-   { key: 'emploiEstime', label: 'Emploi estimé' },
+   { key: 'productionEstimee', label: 'Production Potentielle' },
+   { key: 'investissementEstime', label: 'Investissement Potentiel' },
+   { key: 'emploiEstime', label: 'Emplois Prévus' },
 ];
 
 export function formatNumber(num: number): string {
