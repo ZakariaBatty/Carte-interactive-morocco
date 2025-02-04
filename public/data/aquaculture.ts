@@ -12,10 +12,6 @@ export const aquacultureData = {
          id: 'pisciculture',
          name: 'Pisciculture',
       },
-      {
-         id: 'creveticulture',
-         name: 'Creveticulture',
-      },
    ],
    // Morocco
    MA_00: {
@@ -57,8 +53,8 @@ export const aquacultureData = {
          superficieLibre: 0,
          nombreParcelles: 0,
          nombreParcellesLibre: 0,
-         projetsAutorises: 3,
-         projetsInstalles: 2,
+         projetsAutorises: 0,
+         projetsInstalles: 0,
          productionEstimee: 0,
          investissementEstime: 0,
          emploiEstime: 0,

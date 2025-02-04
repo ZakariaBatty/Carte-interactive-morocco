@@ -103,7 +103,7 @@ export function MoroccoMap() {
         .attr("class", "region transition-colors duration-200")
         .style("cursor", "pointer")
         .on("mouseover", function () {
-          d3.select(this).attr("fill", "#c19d6f");
+          d3.select(this).attr("fill", "#bae6fd");
         })
         .on("mouseout", function () {
           d3.select(this).attr("fill", "#d4b483");
@@ -183,7 +183,7 @@ export function MoroccoMap() {
             .html(`
             <div style="text-align: center; color: white;">
               <p style="font-size: 16px; font-weight: bold; background: black; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                ${region.id === "MA_06" ? 5 : region.id === "MA_03" ? 47 : region.id === "MA_04" ? 12 : region.id === "MA_05" ? 11 : region.id === "MA_01" ? 16 : region.id === "MA_02" ? 18 : region.id === "MA_07" ? 2 : region.id === "MA_00" ? '' : 388} ${region.id === "MA_00" ? "<span style='font-weight: normal;'>Aucuns projects Aquacole</span>" : "<span style='font-weight: normal;'>Projets Aquacole</span>"}
+                ${region.id === "MA_06" ? 5 : region.id === "MA_03" ? 47 : region.id === "MA_04" ? 12 : region.id === "MA_05" ? 11 : region.id === "MA_01" ? 16 : region.id === "MA_02" ? 18 : region.id === "MA_07" ? 2 : region.id === "MA_00" ? '' : 388} ${region.id === "MA_00" ? "<span style='font-weight: normal;'>Aucun projet aquacole</span>" : "<span style='font-weight: normal;'>Projets Aquacole</span>"}
               </p>
               <div style="background: #3BAFDA; padding: 6px 12px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 6px;">
                 ${region.properties['name']}

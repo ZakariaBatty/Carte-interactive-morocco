@@ -65,7 +65,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
   return (
     <>
-      <div className={cn("absolute left-[52%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
+      <div className={cn("absolute left-[50%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
         <div className="relative w-[34rem] h-[19rem]">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
@@ -99,18 +99,18 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
               {/* Nombre de Parcels */}
               <div className="space-y-2 pb-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Superficie (Ha)</span>
+                  <span className="text-sm text-muted-foreground">Superficie ({stats.superficieTotal} Ha)</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${(stats.superficieLibre / stats.superficieTotal) * 100}%` }} >{stats.superficieLibre}</div>
                   <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.superficieTotal - stats.superficieLibre) / stats.superficieTotal * 100}%` }} >{stats.superficieTotal - stats.superficieLibre}</div>
+                  <div className="bg-[#8a9a9e] h-full" style={{ width: `${(stats.superficieLibre / stats.superficieTotal) * 100}%` }} >{stats.superficieLibre}</div>
                 </div>
               </div>
 
               {/* Superficie */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Nombre de parcells</span>
+                  <span className="text-sm text-muted-foreground">Nombre de parcells ({stats.nombreParcelsTotal} Ha)</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
                   <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.nombreParcelsTotal - stats.nombreParcelsLibre) / stats.nombreParcelsTotal * 100}%` }} >{stats.nombreParcelsTotal - stats.nombreParcelsLibre}</div>
@@ -121,19 +121,19 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
               <div className="flex justify-center gap-20">
                 <div className="flex items-center gap-2" />
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
-                  <span className="text-sm text-muted-foreground">Libre</span>
+                  <div className="w-3 h-3 bg-[#46bfdd] rounded" />
+                  <span className="text-sm text-muted-foreground">Occupée</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-[#46bfdd] rounded" />
-                  <span className="text-sm text-muted-foreground">Potentiel</span>
+                  <div className="w-3 h-3 bg-[#8a9a9e] rounded" />
+                  <span className="text-sm text-muted-foreground">Libre</span>
                 </div>
                 <div className="flex items-center gap-2" />
               </div>
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Projets</span>
+                  <span className="text-sm text-muted-foreground">Projets ({stats.nombreProjetsTotal} Ha)</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
                   <div className="bg-[#b7886a] h-full" style={{ width: `${(stats.nombreProjetsInstalles / stats.nombreProjetsTotal) * 100}%` }} >{stats.nombreProjetsInstalles}</div>
