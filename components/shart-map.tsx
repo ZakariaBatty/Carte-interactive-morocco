@@ -37,7 +37,7 @@ const dataVd: Record<string, { vds: string }> = {
   //MA_03 Souss-Massa
   MA_03: { vds: "https://www.youtube.com/embed/Pjd7L4hGJ48?si=aVvQV-hk71UrE3v8" },
   //MA_04 Guelmim-Oued Noun
-  MA_04: { vds: "/guelmim.jpg" },
+  MA_04: { vds: "/morocco/guelmim.jpg" },
   // MA_05 Casablanca-Settat
   MA_05: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn" },
   //MA_06 Marrakech-Safi
