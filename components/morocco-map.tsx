@@ -59,7 +59,7 @@ export function MoroccoMap() {
 
       if (!worldData || !moroccoData) return;
 
-      const world = topojson.feature(worldData as unknown as TopologyWolrd, worldData.objects.countries as GeometryCollection);
+      // const world = topojson.feature(worldData as unknown as TopologyWolrd, worldData.objects.countries as GeometryCollection);
       const morocco = topojson.feature(moroccoData as Topology, moroccoData.objects.regions);
 
       const projection = d3.geoMercator()
@@ -73,22 +73,22 @@ export function MoroccoMap() {
 
       mapGroup.append("rect").attr("width", width).attr("height", height).attr("fill", "#0c4a6e");
 
-      mapGroup
-        .append("g")
-        .selectAll("path")
-        .data(world.features)
-        .enter()
-        .append("path")
-        .attr("d", pathGenerator)
-        .attr("fill", "#d4b483")
-        .attr("stroke", "white")
-        .attr("stroke-width", 0.5)
-        .on("click", (event, d) => {
-          console.log(d);
-          setSelectedRegion({ id: "MA_00", properties: { "name:en": "Morocco", "name:ar": "المغرب", "name:fr": "Maroc", id: "MA_00" } });
-          setOpen(false)
-          svg.selectAll(".radial-viz").remove();
-        });
+      // mapGroup
+      //   .append("g")
+      //   .selectAll("path")
+      //   .data(world.features)
+      //   .enter()
+      //   .append("path")
+      //   .attr("d", pathGenerator)
+      //   .attr("fill", "#d4b483")
+      //   .attr("stroke", "white")
+      //   .attr("stroke-width", 0.5)
+      //   .on("click", (event, d) => {
+      //     console.log(d);
+      //     setSelectedRegion({ id: "MA_00", properties: { "name:en": "Morocco", "name:ar": "المغرب", "name:fr": "Maroc", id: "MA_00" } });
+      //     setOpen(false)
+      //     svg.selectAll(".radial-viz").remove();
+      //   });
 
       mapGroup
         .append("g")
