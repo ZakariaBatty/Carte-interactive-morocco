@@ -8,6 +8,10 @@ export const statCategories = [
    { key: 'emploiEstime', label: 'Emploi estimé' },
 ];
 
+export function formatNumber(num: number): string {
+   return num.toLocaleString('de-DE', { maximumFractionDigits: 0 });
+}
+
 export function calculateTotal(
    data: { [key: string]: { [key: string]: number } } | undefined,
    statKey: string
@@ -17,5 +21,5 @@ export function calculateTotal(
       (total, category) => total + (category[statKey] || 0),
       0
    );
-   return total.toFixed(2);
+   return formatNumber(Math.round(total));
 }

@@ -29,14 +29,22 @@ const dataSet: Record<string, { superficieTotal: number; superficieLibre: number
 };
 
 const dataVd: Record<string, { vds: string }> = {
+  //MA_01 Tanger-Tétouan-Al Hoceïma
   MA_01: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
-  MA_02: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
-  MA_03: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  //MA_02 L'Oriental
+  MA_02: { vds: "https://www.youtube.com/embed/PCuNSqFWiKI?si=LGHzYc7eoAxlgCth" },
+  //MA_03 Souss-Massa
+  MA_03: { vds: "https://www.youtube.com/embed/Pjd7L4hGJ48?si=aVvQV-hk71UrE3v8" },
+  //MA_04 Guelmim-Oued Noun
   MA_04: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  // MA_05 Casablanca-Settat
   MA_05: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  //MA_06 Marrakech-Safi
   MA_06: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  //MA_07 Laâyoune-Sakia El Hamra
   MA_07: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
-  MA_08: { vds: "https://www.youtube.com/embed/d6NSAozTV3I?autoplay=1" },
+  //MA_08 Dakhla-Oued Ed-Dahab
+  MA_08: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk" },
 };
 
 
@@ -54,6 +62,13 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
   // get vds by id
   const vds = dataVd[vd]?.vds;
   const isYouTube = vds?.includes("youtube.com");
+
+  const getYouTubeId = (url: string): string | null => {
+    const regExp = /(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/)([^&?#]+))/;
+    const match = url.match(regExp);
+    return match ? match[1] : null;
+  };
+
 
   // <div className={cn("absolute left-[55%] shadow-xl rounded-lg overflow-hidden",
   //   vd === "MA_01" ? "bottom-72" :
@@ -75,6 +90,16 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
                 <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
                   <Play size={48} className="text-white opacity-80 cursor-pointer" />
                 </DialogTrigger>
+
+                {isYouTube ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={`https://img.youtube.com/vi/${getYouTubeId(vds)}/hqdefault.jpg`}
+                    alt="Video thumbnail"
+                    className="w-full h-full object-cover" />
+                ) : (
+                  <video className="w-full h-full object-cover" poster="/your-thumbnail.jpg"></video>
+                )}
+
                 <DialogContent className="max-w-4xl p-0 bg-black">
                   {isYouTube ? (
                     <iframe
