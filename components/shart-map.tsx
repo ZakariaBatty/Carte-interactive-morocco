@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Play } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent } from "./ui/card";
 import { cn } from "@/lib/utils";
 
 
@@ -66,7 +66,7 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
   return (
     <>
       <div className={cn("absolute left-[52%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
-        <div className="relative w-[36rem] h-[20rem]">
+        <div className="relative w-[34rem] h-[19rem]">
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
               <Play size={48} className="text-white opacity-80 cursor-pointer" />
@@ -92,28 +92,25 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
       </div>
 
       <div className="absolute top-4 left-4 rounded-lg overflow-hidden">
-        <div className="w-full max-w-2xl mx-auto text-white space-y-8 p-4">
+        <div className="w-full  max-w-2xl mx-auto text-white space-y-8 p-4">
           {/* First Chart */}
           <Card className="w-full">
-            <CardHeader>
-              <CardTitle className="text-lg font-medium">Graphique Animé des données</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-6 pt-4">
               {/* Nombre de Parcels */}
-              <div className="space-y-2">
+              <div className="space-y-2 pb-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">Superficie (Ha)</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
-                  <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.superficieTotal - stats.superficieLibre) / stats.superficieTotal * 100}%` }} >{stats.superficieTotal - stats.superficieLibre}</div>
                   <div className="bg-[#8a9a9e] h-full" style={{ width: `${(stats.superficieLibre / stats.superficieTotal) * 100}%` }} >{stats.superficieLibre}</div>
+                  <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.superficieTotal - stats.superficieLibre) / stats.superficieTotal * 100}%` }} >{stats.superficieTotal - stats.superficieLibre}</div>
                 </div>
               </div>
 
               {/* Superficie */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm text-muted-foreground">Nombre de parcels</span>
+                  <span className="text-sm text-muted-foreground">Nombre de parcells</span>
                 </div>
                 <div className="flex w-full  h-6 text-white text-center rounded-full overflow-hidden">
                   <div className="bg-[#46bfdd] h-full" style={{ width: `${(stats.nombreParcelsTotal - stats.nombreParcelsLibre) / stats.nombreParcelsTotal * 100}%` }} >{stats.nombreParcelsTotal - stats.nombreParcelsLibre}</div>
