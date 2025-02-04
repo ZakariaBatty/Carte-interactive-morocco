@@ -34,7 +34,7 @@ export type Geometry = GeometryObject & {
 export function MoroccoMap() {
   const svgRef = useRef<SVGSVGElement>(null)
   const [selectedRegion, setSelectedRegion] = useState<Region | null>(null)
-  const [open, setOpen] = useState(false)
+  // const [open, setOpen] = useState(false)
 
   useEffect(() => {
     if (!svgRef.current) return
@@ -114,10 +114,10 @@ export function MoroccoMap() {
           console.log(region)
           if (region.id === "MA_00") {
             setSelectedRegion({ id: "MA_00", properties: { "name:en": "Morocco", "name:ar": "المغرب", "name:fr": "Maroc", id: "MA_00" } });
-            setOpen(false)
+            // setOpen(false)
           } else {
             setSelectedRegion(region);
-            setOpen(true)
+            // setOpen(true)
           }
           const center = pathGenerator.centroid(d);
           const radius = 100;
@@ -176,8 +176,8 @@ export function MoroccoMap() {
 
           radialGroup
             .append("foreignObject")
-            .attr("x", `${region.id === "MA_05" ? -400 : region.id === "MA_01" ? -420 : region.id === "MA_02" ? -110 : region.id === "MA_07" ? -500 : -380}`)
-            .attr("y", `${region.id === "MA_01" ? 10 : region.id === "MA_05" ? -100 : region.id === "MA_02" ? 112 : region.id === "MA_07" ? 30 : -130}`)
+            .attr("x", `${region.id === "MA_01" ? -420 : -380}`)
+            .attr("y", `${region.id === "MA_01" ? 80 : -130}`)
             .attr("width", 300)
             .attr("height", 80)
             .html(`
@@ -223,7 +223,7 @@ export function MoroccoMap() {
           </div>
         </motion.div>
       </div>
-      {open && <ProjectStatisticCard vd={idStats} />}
+      <ProjectStatisticCard vd={idStats} />
     </>
   )
 }

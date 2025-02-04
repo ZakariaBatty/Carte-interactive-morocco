@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 
 
 const dataSet: Record<string, { superficieTotal: number; superficieLibre: number; nombreParcelsTotal: number; nombreParcelsLibre: number; nombreProjetsTotal: number; nombreProjetsInstalles: number }> = {
+  // morocco
+  MA_00: { superficieTotal: 487, superficieLibre: 270, nombreParcelsTotal: 24, nombreParcelsLibre: 12, nombreProjetsTotal: 16, nombreProjetsInstalles: 7 },
   //MA_01 Tanger-Tétouan-Al Hoceïma
   MA_01: { superficieTotal: 487, superficieLibre: 270, nombreParcelsTotal: 24, nombreParcelsLibre: 12, nombreProjetsTotal: 16, nombreProjetsInstalles: 7 },
   //MA_02 L'Oriental
@@ -65,31 +67,35 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
 
   return (
     <>
-      <div className={cn("absolute left-[50%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
-        <div className="relative w-[34rem] h-[19rem]">
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
-              <Play size={48} className="text-white opacity-80 cursor-pointer" />
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl p-0 bg-black">
-              {isYouTube ? (
-                <iframe
-                  width="100%"
-                  height="500"
-                  src={vds}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                ></iframe>
-              ) : (
-                <video width="100%" height="500" controls>
-                  <source src={vds} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              )}
-            </DialogContent>
-          </Dialog>
-        </div>
-      </div>
+      {
+        vd !== "MA_00" && (
+          <div className={cn("absolute left-[50%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
+            <div className="relative w-[34rem] h-[19rem]">
+              <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
+                  <Play size={48} className="text-white opacity-80 cursor-pointer" />
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl p-0 bg-black">
+                  {isYouTube ? (
+                    <iframe
+                      width="100%"
+                      height="500"
+                      src={vds}
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    ></iframe>
+                  ) : (
+                    <video width="100%" height="500" controls>
+                      <source src={vds} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  )}
+                </DialogContent>
+              </Dialog>
+            </div>
+          </div>
+        )
+      }
 
       <div className="absolute top-4 left-4 rounded-lg overflow-hidden">
         <div className="w-full  max-w-2xl mx-auto text-white space-y-8 p-4">
