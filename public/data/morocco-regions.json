@@ -29,7 +29,16 @@
                },
                "arcs": [[[-14, -15, -16, 9, -17, 5]]]
             },
-
+            {
+               "type": "Polygon",
+               "id": "MA_00",
+               "properties": {
+                  "name:en": "Drâa-Tafilalet",
+                  "name:ar": "درعة تافيلالت",
+                  "name": "Drâa-Tafilalet"
+               },
+               "arcs": [[17, 18, 19, 20, 14, 21]]
+            },
             {
                "type": "MultiPolygon",
                "id": "MA_03",
@@ -89,6 +98,36 @@
                   "name": "Dakhla-Oued Ed-Dahab"
                },
                "arcs": [[42, -41]]
+            },
+            {
+               "type": "MultiPolygon",
+               "id": "MA_00",
+               "properties": {
+                  "name:en": "Rabat-Salé-Kénitra",
+                  "name:ar": "الرباط-سلا-القنيطرة",
+                  "name": "Rabat-Salé-Kénitra"
+               },
+               "arcs": [[[-44]], [[-45]], [[-46, 11, -47, -48, 32]]]
+            },
+            {
+               "type": "Polygon",
+               "id": "MA_0O",
+               "properties": {
+                  "name:en": "Fès-Meknès",
+                  "name:ar": "فاس-مكناس",
+                  "name": "Fès-Meknès"
+               },
+               "arcs": [[-21, 48, 46, 10, 15]]
+            },
+            {
+               "type": "Polygon",
+               "id": "MA_00",
+               "properties": {
+                  "name:en": "Béni Mellal-Khénifra",
+                  "name:ar": "بني ملال-خنيفرة",
+                  "name": "Béni Mellal-Khénifra"
+               },
+               "arcs": [[-49, -20, 38, 33, 47]]
             }
          ]
       }

@@ -111,8 +111,14 @@ export function MoroccoMap() {
         .on("click", (event, d) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const region = d as any;
-          setSelectedRegion(region);
-          setOpen(true)
+          console.log(region)
+          if (region.id === "MA_00") {
+            setSelectedRegion({ id: "MA_00", properties: { "name:en": "Morocco", "name:ar": "المغرب", "name:fr": "Maroc", id: "MA_00" } });
+            setOpen(false)
+          } else {
+            setSelectedRegion(region);
+            setOpen(true)
+          }
           const center = pathGenerator.centroid(d);
           const radius = 100;
           svg.selectAll(".radial-viz").remove();
@@ -193,6 +199,7 @@ export function MoroccoMap() {
   const regionStats = selectedRegion ? selectedRegion.properties['name:en'] : null
   const idStats = selectedRegion ? selectedRegion.id : "MA_00"
 
+  console.log(selectedRegion)
   return (
     <>
       <div className="absolute inset-0 overflow-hidden">
