@@ -177,7 +177,7 @@ export function MoroccoMap() {
           radialGroup
             .append("foreignObject")
             .attr("x", `${region.id === "MA_01" ? -420 : -380}`)
-            .attr("y", `${region.id === "MA_01" ? 80 : -130}`)
+            .attr("y", `${region.id === "MA_01" ? -80 : -130}`)
             .attr("width", 300)
             .attr("height", 80)
             .html(`

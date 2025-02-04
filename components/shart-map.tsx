@@ -69,8 +69,8 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
     <>
       {
         vd !== "MA_00" && (
-          <div className={cn("absolute left-[50%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
-            <div className="relative w-[34rem] h-[19rem]">
+          <div className={cn("absolute left-[51%] shadow-xl rounded-lg overflow-hidden bottom-11")}>
+            <div className="relative w-[33rem] h-[19rem]">
               <Dialog open={isOpen} onOpenChange={setIsOpen}>
                 <DialogTrigger className="absolute inset-0 flex items-center justify-center bg-black/40">
                   <Play size={48} className="text-white opacity-80 cursor-pointer" />
