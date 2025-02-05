@@ -24,7 +24,7 @@ const dataSet: Record<string, { superficieTotal: number; superficieLibre: number
   //MA_06 Marrakech-Safi
   MA_06: { superficieTotal: 6060, superficieLibre: 5270, nombreParcelsTotal: 300, nombreParcelsLibre: 260, nombreProjetsTotal: 5, nombreProjetsInstalles: 1 },
   //MA_07 Laâyoune-Sakia El Hamra
-  MA_07: { superficieTotal: 735, superficieLibre: 570, nombreParcelsTotal: 49, nombreParcelsLibre: 38, nombreProjetsTotal: 2, nombreProjetsInstalles: 1 },
+  MA_07: { superficieTotal: 735, superficieLibre: 570, nombreParcelsTotal: 49, nombreParcelsLibre: 38, nombreProjetsTotal: 2, nombreProjetsInstalles: 0 },
   //MA_08 Dakhla-Oued Ed-Dahab
   MA_08: { superficieTotal: 6424, superficieLibre: 1640, nombreParcelsTotal: 655, nombreParcelsLibre: 73, nombreProjetsTotal: 390, nombreProjetsInstalles: 138 },
 };
