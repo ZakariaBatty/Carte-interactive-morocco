@@ -26,7 +26,7 @@ const dataSet: Record<string, { superficieTotal: number; superficieLibre: number
   //MA_07 Laâyoune-Sakia El Hamra
   MA_07: { superficieTotal: 735, superficieLibre: 570, nombreParcelsTotal: 49, nombreParcelsLibre: 38, nombreProjetsTotal: 2, nombreProjetsInstalles: 1 },
   //MA_08 Dakhla-Oued Ed-Dahab
-  MA_08: { superficieTotal: 6424, superficieLibre: 1640, nombreParcelsTotal: 655, nombreParcelsLibre: 73, nombreProjetsTotal: 388, nombreProjetsInstalles: 138 },
+  MA_08: { superficieTotal: 6424, superficieLibre: 1640, nombreParcelsTotal: 655, nombreParcelsLibre: 73, nombreProjetsTotal: 390, nombreProjetsInstalles: 138 },
 };
 
 const dataVd: Record<string, { vds: string }> = {
