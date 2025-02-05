@@ -49,6 +49,7 @@ export function AquacultureDashboard({ regionName, stats = "MA_00" }: { regionNa
               filteredCategories={filteredCategories}
               regionData={regionData}
               selectedType={selectedType}
+              stats={stats}
             />
           ))}
         </div>
@@ -62,10 +63,11 @@ type StatCategoryProps = {
   filteredCategories: typeof aquacultureData.categories
   regionData: { [key: string]: { [key: string]: number } } | undefined
   selectedType: string | "all"
+  stats: string
 }
 
-function StatCategory({ stat, filteredCategories, regionData, selectedType }: StatCategoryProps) {
-  const total = calculateTotal(regionData, stat.key)
+function StatCategory({ stat, filteredCategories, regionData, selectedType, stats }: StatCategoryProps) {
+  const total = calculateTotal(regionData, stat.key, stats)
 
   return (
     <div className="rounded-md overflow-hidden">

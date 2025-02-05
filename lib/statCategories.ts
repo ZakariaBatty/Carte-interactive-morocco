@@ -16,12 +16,20 @@ export function formatNumber(num: number): string {
 
 export function calculateTotal(
    data: { [key: string]: { [key: string]: number } } | undefined,
-   statKey: string
+   statKey: string,
+   stats?: string
 ): string {
    if (!data) return '0';
    const total = Object.values(data).reduce(
       (total, category) => total + (category[statKey] || 0),
       0
    );
-   return formatNumber(Math.round(total));
+
+   // Add 3 to projetsInstalles total if stats is MA_00
+   let adjustedTotal = total;
+   if (stats === 'MA_00' && statKey === 'projetsAutorises') {
+      adjustedTotal = total + 3;
+   }
+
+   return formatNumber(Math.round(adjustedTotal));
 }
