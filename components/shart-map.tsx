@@ -39,7 +39,7 @@ const dataVd: Record<string, { vds: string }> = {
   //MA_04 Guelmim-Oued Noun
   MA_04: { vds: "/morocco/guelmim.jpg" },
   // MA_05 Casablanca-Settat
-  MA_05: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn;start=3" },
+  MA_05: { vds: "https://www.youtube.com/embed/qdawQWV7NVY?si=6wAEHIkto9oZPAi9;start=3" },
   //MA_06 Marrakech-Safi
   MA_06: { vds: "https://www.youtube.com/embed/gn33_WHLKvc?si=TOd9Vpc_uyWwc02x;start=3" },
   //MA_07 Laâyoune-Sakia El Hamra
