@@ -3,20 +3,20 @@
 import { useState } from "react";
 import { Play } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 
 const dataSet: Record<string, { superficieTotal: number; superficieLibre: number; nombreParcelsTotal: number; nombreParcelsLibre: number; nombreProjetsTotal: number; nombreProjetsInstalles: number }> = {
   // morocco
-  MA_00: { superficieTotal: 487, superficieLibre: 270, nombreParcelsTotal: 24, nombreParcelsLibre: 12, nombreProjetsTotal: 16, nombreProjetsInstalles: 7 },
+  MA_00: { superficieTotal: 24107, superficieLibre: 12345, nombreParcelsTotal: 1576, nombreParcelsLibre: 680, nombreProjetsTotal: 494, nombreProjetsInstalles: 175 },
   //MA_01 Tanger-Tétouan-Al Hoceïma
   MA_01: { superficieTotal: 487, superficieLibre: 270, nombreParcelsTotal: 24, nombreParcelsLibre: 12, nombreProjetsTotal: 16, nombreProjetsInstalles: 7 },
   //MA_02 L'Oriental
   MA_02: { superficieTotal: 2242, superficieLibre: 1330, nombreParcelsTotal: 124, nombreParcelsLibre: 74, nombreProjetsTotal: 18, nombreProjetsInstalles: 6 },
   //MA_03 Souss-Massa
-  MA_03: { superficieTotal: 5748, superficieLibre: 2070, nombreParcelsTotal: 255, nombreParcelsLibre: 138, nombreProjetsTotal: 47, nombreProjetsInstalles: 15 },
+  MA_03: { superficieTotal: 5748, superficieLibre: 3870, nombreParcelsTotal: 255, nombreParcelsLibre: 138, nombreProjetsTotal: 44, nombreProjetsInstalles: 12 },
   //MA_04 Guelmim-Oued Noun
   MA_04: { superficieTotal: 1800, superficieLibre: 795, nombreParcelsTotal: 104, nombreParcelsLibre: 53, nombreProjetsTotal: 12, nombreProjetsInstalles: 2 },
   // MA_05 Casablanca-Settat
@@ -31,21 +31,21 @@ const dataSet: Record<string, { superficieTotal: number; superficieLibre: number
 
 const dataVd: Record<string, { vds: string }> = {
   //MA_01 Tanger-Tétouan-Al Hoceïma
-  MA_01: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn" },
+  MA_01: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn;start=3" },
   //MA_02 L'Oriental
-  MA_02: { vds: "https://www.youtube.com/embed/PCuNSqFWiKI?si=LGHzYc7eoAxlgCth" },
+  MA_02: { vds: "https://www.youtube.com/embed/PCuNSqFWiKI?si=LGHzYc7eoAxlgCth;start=3" },
   //MA_03 Souss-Massa
-  MA_03: { vds: "https://www.youtube.com/embed/Pjd7L4hGJ48?si=aVvQV-hk71UrE3v8" },
+  MA_03: { vds: "https://www.youtube.com/embed/Pjd7L4hGJ48?si=aVvQV-hk71UrE3v8;start=3" },
   //MA_04 Guelmim-Oued Noun
   MA_04: { vds: "/morocco/guelmim.jpg" },
   // MA_05 Casablanca-Settat
-  MA_05: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn" },
+  MA_05: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn;start=3" },
   //MA_06 Marrakech-Safi
-  MA_06: { vds: "https://www.youtube.com/embed/gn33_WHLKvc?si=TOd9Vpc_uyWwc02x" },
+  MA_06: { vds: "https://www.youtube.com/embed/gn33_WHLKvc?si=TOd9Vpc_uyWwc02x;start=3" },
   //MA_07 Laâyoune-Sakia El Hamra
-  MA_07: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn" },
+  MA_07: { vds: "https://www.youtube.com/embed/2qOD7RgnAFc?si=7yZtj3Dn04QLe4Kn;start=3" },
   //MA_08 Dakhla-Oued Ed-Dahab
-  MA_08: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk" },
+  MA_08: { vds: "https://www.youtube.com/embed/8XNgn5Ta9bA?si=wszpycjJg8EIFLKk;start=3" },
 };
 
 
@@ -136,7 +136,10 @@ const ProjectStatisticCard: React.FC<ProjectStatisticCardProps> = ({ vd }) => {
         <div className="w-full  max-w-2xl mx-auto text-white space-y-8 p-4">
           {/* First Chart */}
           <Card className="w-full">
-            <CardContent className="space-y-6 pt-4">
+            <CardHeader>
+              <CardTitle className="text-lg font-medium">Indicateurs</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
               {/* Nombre de Parcels */}
               <div className="space-y-2 pb-2">
                 <div className="flex justify-between items-center">
