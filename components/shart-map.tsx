@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const dataSet: Record<string, { superficieTotal: number; superficieLibre: number; nombreParcelsTotal: number; nombreParcelsLibre: number; nombreProjetsTotal: number; nombreProjetsInstalles: number }> = {
   // morocco
-  MA_00: { superficieTotal: 24107, superficieLibre: 12345, nombreParcelsTotal: 1576, nombreParcelsLibre: 680, nombreProjetsTotal: 494, nombreProjetsInstalles: 175 },
+  MA_00: { superficieTotal: 24107, superficieLibre: 12345, nombreParcelsTotal: 1576, nombreParcelsLibre: 680, nombreProjetsTotal: 497, nombreProjetsInstalles: 175 },
   //MA_01 Tanger-Tétouan-Al Hoceïma
   MA_01: { superficieTotal: 487, superficieLibre: 270, nombreParcelsTotal: 24, nombreParcelsLibre: 12, nombreProjetsTotal: 16, nombreProjetsInstalles: 7 },
   //MA_02 L'Oriental
@@ -26,7 +26,7 @@ const dataSet: Record<string, { superficieTotal: number; superficieLibre: number
   //MA_07 Laâyoune-Sakia El Hamra
   MA_07: { superficieTotal: 735, superficieLibre: 570, nombreParcelsTotal: 49, nombreParcelsLibre: 38, nombreProjetsTotal: 2, nombreProjetsInstalles: 1 },
   //MA_08 Dakhla-Oued Ed-Dahab
-  MA_08: { superficieTotal: 6424, superficieLibre: 1640, nombreParcelsTotal: 655, nombreParcelsLibre: 73, nombreProjetsTotal: 388, nombreProjetsInstalles: 136 },
+  MA_08: { superficieTotal: 6424, superficieLibre: 1640, nombreParcelsTotal: 655, nombreParcelsLibre: 73, nombreProjetsTotal: 388, nombreProjetsInstalles: 138 },
 };
 
 const dataVd: Record<string, { vds: string }> = {
