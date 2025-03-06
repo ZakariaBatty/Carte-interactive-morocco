@@ -1,26 +1,24 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Card } from "@/components/ui/card"
 import { aquacultureData } from "@/public/data/aquaculture"
+import { statCategories, calculateTotal, formatNumber } from "@/lib/statCategories"
 
 export function AquacultureDashboard({ regionName, stats = "MA_00" }: { regionName: string | null; stats: string }) {
   const [selectedType, setSelectedType] = useState<string | "all">("all")
 
-  const statCategories = [
-    { key: "superficieLibre", label: "Superficie libre", unit: "Ha" },
-    { key: "nombreParcelles", label: "Nombre de parcelles" },
-    { key: "projetsAutorises", label: "Projets autorisés" },
-    { key: "projetsInstalles", label: "Projets installés" },
-    { key: "productionEstimee", label: "Production estimée" },
-    { key: "investissementEstime", label: "Investissement estimé" },
-    { key: "emploiEstime", label: "Emploi estimé" },
-  ]
+  const filteredCategories = useMemo(
+    () =>
+      selectedType === "all"
+        ? aquacultureData.categories
+        : aquacultureData.categories.filter((cat) => cat.id === selectedType),
+    [selectedType],
+  )
 
-  const filteredCategories =
-    selectedType === "all"
-      ? aquacultureData.categories
-      : aquacultureData.categories.filter((cat) => cat.id === selectedType)
+  const regionData = aquacultureData[stats as keyof typeof aquacultureData] as
+    | { [key: string]: { [key: string]: number } }
+    | undefined
 
   return (
     <Card className="absolute top-0 right-0 text-white p-6 bg-black/30 h-screen max-h-screen rounded-none overflow-y-auto w-full sm:w-1/3 lg:w-1/5">
@@ -43,35 +41,65 @@ export function AquacultureDashboard({ regionName, stats = "MA_00" }: { regionNa
           </select>
         </div>
 
-        {statCategories.map((stat) => (
-          <div key={stat.key}>
-            <h3 className="font-bold text-sm sm:text-base leading-5 text-[#46BFDE] mb-1">{stat.label}</h3>
-            <div
-              className={`grid gap-2 ${filteredCategories.length > 1 ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-1"
-                }`}
-            >
-              {filteredCategories
-                .filter((category) => {
-                  const value = (aquacultureData[stats as keyof typeof aquacultureData] as { [key: string]: { [key: string]: number } })?.[category.id]?.[stat.key];
-                  return category.name !== "Creveticulture" || value !== 0;
-                })
-                .map((category) => (
-                  <div
-                    key={category.id}
-                    className={`flex flex-col justify-between border-b border-[#4fd1c5]/20 pb-2 ${filteredCategories.length > 1 ? "items-center" : "items-start"
-                      }`}
-                  >
-                    <span className="font-light text-xs sm:text-sm">{category.name}</span>
-                    <span className="text-white font-bold text-lg sm:text-xl mt-2">
-                      {(aquacultureData[stats as keyof typeof aquacultureData] as { [key: string]: { [key: string]: number } })?.[category.id]?.[stat.key] ?? "0"}
-                      {stat.unit && <span className="ml-1">{stat.unit}</span>}
-                    </span>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ))}
+        <div className="grid gap-4">
+          {statCategories.map((stat) => (
+            <StatCategory
+              key={stat.key}
+              stat={stat}
+              filteredCategories={filteredCategories}
+              regionData={regionData}
+              selectedType={selectedType}
+              stats={stats}
+            />
+          ))}
+        </div>
       </div>
     </Card>
   )
 }
+
+type StatCategoryProps = {
+  stat: (typeof statCategories)[number]
+  filteredCategories: typeof aquacultureData.categories
+  regionData: { [key: string]: { [key: string]: number } } | undefined
+  selectedType: string | "all"
+  stats: string
+}
+
+function StatCategory({ stat, filteredCategories, regionData, selectedType, stats }: StatCategoryProps) {
+  const total = calculateTotal(regionData, stat.key, stats)
+
+  return (
+    <div className="rounded-md overflow-hidden">
+      <div className="p-1 text-white">
+        <div className="text-xl text-[#46bfdd] font-semibold mb-1 border-b-2 border-white pb-2">
+          {stat.label} <span className={`${stat.unit ? 'ml-1 text-white' : 'text-white'}`}>
+            {selectedType === "all" ? (
+              <>
+                ({total} {stat.unit && <span className=" text-white">{stat.unit}</span>})
+              </>
+            ) : ''}
+          </span>
+
+        </div>
+        <div className="grid grid-cols-3 gap-0">
+          {filteredCategories
+            .filter((category) => {
+              const value = regionData?.[category.id]?.[stat.key]
+              return category.name !== "Creveticulture" || value !== 0
+            })
+            .map((category) => (
+              <div key={category.id} className="text-center">
+                <div className="text-sm text-gray-300 mb-1">{category.name}</div>
+                <div className="text-xl font-bold">
+                  {formatNumber(Math.round(regionData?.[category.id]?.[stat.key] ?? 0))}
+                  {stat.unit && <span className="ml-1">{stat.unit}</span>}
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
